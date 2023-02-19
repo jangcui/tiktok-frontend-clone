@@ -1,0 +1,103 @@
+.wrapper {
+    width: 100%;
+    height: 100vh;
+}
+
+.container {
+    display: flex;
+    height: 100%;
+    justify-content: flex-start;
+
+    .loading {
+        position: fixed;
+        top: 20%;
+        right: 50%;
+    }
+}
+.sidebar {
+    width: 240px;
+}
+.content {
+    margin-top: 60px;
+    margin-left: 20px;
+    flex: 1 1;
+    display: flex;
+    flex-direction: column;
+    padding: 32px 24px;
+}
+
+.wrap-videos {
+    flex: 1;
+
+    .btn-toggle {
+        position: relative;
+        display: flex;
+        align-items: center;
+        width: 460px;
+        justify-content: flex-start;
+        height: 44px;
+        margin-bottom: 8px;
+
+        .btn-video,
+        .btn-liked {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            width: 230px;
+            text-align: center;
+            cursor: pointer;
+            border-bottom: 1px solid #16182314;
+            font-weight: 600;
+            font-size: 18px;
+            line-height: 25px;
+        }
+
+        .slider {
+            position: absolute;
+            left: 0;
+            width: 230px;
+            height: 1.5px;
+            border-radius: 6px;
+            background-color: #161823;
+            bottom: 0;
+            transition: transform 0.45s ease 0s;
+            transform: translateX(0);
+        }
+        .active-btn {
+            color: #16182380;
+        }
+        .btn-liked:hover ~ .slider,
+        .active-slider {
+            transform: translateX(230px);
+        }
+        .btn-video:hover ~ .slider {
+            transform: translateX(0);
+        }
+    }
+
+    .private {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+
+        .icon {
+            width: 90px;
+            height: 90px;
+            fill-opacity: 0.34;
+        }
+        h2 {
+            font-size: 24px;
+            line-height: 28px;
+            color: #161823;
+            margin-top: 24px;
+        }
+        p {
+            line-height: 22px;
+            color: #161823bf;
+            margin-top: 8px;
+        }
+    }
+}

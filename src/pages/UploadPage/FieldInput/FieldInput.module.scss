@@ -1,0 +1,30 @@
+.caption {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 40px;
+
+    .error {
+        color: var(--primary);
+        font-size: 12px;
+        font-weight: 600;
+        line-height: 1.5;
+    }
+    .input {
+        position: relative;
+        border-radius: 4px;
+        border: 1.5px solid #1618231f;
+        cursor: text;
+        font-size: 15px;
+        line-height: 18px;
+        padding: 12px 0px;
+        overflow: auto;
+        white-space: pre-wrap;
+        overflow-wrap: break-word;
+
+        input {
+            width: 100%;
+            padding-left: 16px;
+            padding-right: 80px;
+        }
+    }
+}

@@ -1,0 +1,102 @@
+.container {
+    position: absolute;
+    top: 48%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    background: #fff;
+}
+
+.container form {
+    padding: 0 35px;
+}
+
+form .form-control {
+    position: relative;
+    border-bottom: 2px solid #adadad;
+    margin-bottom: 26px;
+}
+.guide {
+    position: absolute;
+    font-size: 12px;
+    top: -24px;
+    right: -80px;
+    color: #49a2e9;
+    width: 405px;
+}
+.form-control.success {
+    border-bottom-color: var(--main-color);
+}
+
+.form-control.error {
+    border-bottom-color: var(--primary);
+}
+
+.form-control input {
+    width: 100%;
+    height: 40px;
+    font-size: 16px;
+}
+
+small {
+    position: absolute;
+    left: 0;
+    top: 100%;
+    margin-top: 3px;
+    color: var(--primary);
+}
+
+.form-control span::before {
+    content: '';
+    position: absolute;
+    top: 40px;
+    left: 0;
+    width: 0%;
+    height: 2px;
+    background: var(--main-color);
+    transition: 0.3s;
+}
+
+.form-control input:focus ~ span::before {
+    width: 100%;
+}
+.hidden {
+    position: absolute;
+    right: 6px;
+    top: 18px;
+    font-size: 16px;
+    color: #420808e0;
+    cursor: pointer;
+}
+.btn {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+    font-size: 20px;
+}
+.loading {
+    position: fixed;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+    z-index: 199;
+    justify-content: center;
+    align-items: center;
+
+    h2 {
+        color: #ccc;
+        margin-top: 50px;
+    }
+}
+.overlay {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(48, 60, 63, 0.9019607843);
+    border-radius: 8px;
+    opacity: 0.7;
+    z-index: 1;
+    inset: 0;
+}

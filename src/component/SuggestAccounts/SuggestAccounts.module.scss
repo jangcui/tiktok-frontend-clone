@@ -1,0 +1,71 @@
+.wrapper {
+    position: relative;
+    &::before {
+        content: '';
+        position: absolute;
+        height: 1px;
+        left: 8px;
+        right: 8px;
+        background: rgba(22, 24, 35, 0.12);
+
+        transform: scaleY(0.5);
+        top: 0;
+    }
+}
+.label {
+    font-size: 1.4rem;
+    padding: 8px;
+    font-weight: 600;
+}
+
+///////Account -item
+.account-item {
+    display: flex;
+    padding: 8px;
+    cursor: pointer;
+
+    &:hover {
+        background-color: rgba(22, 24, 35, 0.03);
+    }
+}
+
+.avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.info {
+    flex: 1;
+    margin-left: 12px;
+}
+
+.nickname {
+    display: flex;
+    align-items: center;
+    line-height: 1;
+    font-size: 1.6rem;
+    color: #161823bf;
+}
+
+.check {
+    background-color: #20d5ec;
+    margin-left: 6px;
+    border-radius: 50%;
+}
+
+.name {
+    font-size: 1.2rem;
+    color: rgba(22, 24, 35, 0.75);
+}
+.more-btn {
+    display: inline-block;
+    padding: 8px;
+    font-size: 1.4rem;
+    color: rgb(254, 44, 85);
+    font-weight: 600;
+    line-height: 2rem;
+    cursor: pointer;
+}
+//sub account items

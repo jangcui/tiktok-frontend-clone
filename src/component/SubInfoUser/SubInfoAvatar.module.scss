@@ -1,0 +1,79 @@
+.wrapper {
+    background-color: #fff;
+    width: 320px;
+    padding: 20px;
+    box-shadow: rgb(0 0 0 / 12%) 0px 4px 16px;
+    border-radius: 8px;
+    z-index: 999;
+
+    span + b {
+        margin-left: 12px;
+        margin-bottom: 10px;
+    }
+    span {
+        cursor: pointer;
+    }
+}
+
+.small {
+    width: 250px;
+}
+.btn {
+    width: 110px;
+}
+.logo {
+    border-radius: 50%;
+    width: 44px;
+    height: 44px;
+    cursor: pointer;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.btn {
+    width: 106px;
+    height: 34px;
+}
+.follow {
+    b {
+        font-size: 18px;
+        color: var(--primary);
+        margin-right: 6px;
+    }
+    span {
+        font-size: 16px;
+        color: #16182380;
+    }
+}
+.nickname {
+    display: flex;
+    align-items: center;
+    color: rgb(22, 24, 35);
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 22px;
+    cursor: pointer;
+
+    b {
+        font-size: 20px;
+    }
+}
+
+.check {
+    background-color: #20d5ec;
+    margin-left: 6px;
+    border-radius: 50%;
+}
+
+.user-card {
+    font-size: 14px;
+    line-height: 20px;
+    padding-top: 16px;
+    margin-top: 16px;
+    border-top: 1px solid rgba(22, 24, 35, 0.12);
+}

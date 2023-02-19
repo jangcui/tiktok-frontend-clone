@@ -1,0 +1,30 @@
+.wrapper {
+    min-width: 350px;
+    margin: 0 auto;
+    z-index: 99199;
+    position: fixed;
+    top: -100px;
+    transition: all 0.5s ease-in;
+    left: 40%;
+    opacity: 0;
+}
+.slide {
+    left: 40%;
+    top: 10px;
+    opacity: 1;
+    transition: all 0.2s ease-in;
+}
+.container {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 14px 20px;
+    color: #ffffff;
+    border-radius: 4px;
+    background-color: #333;
+
+    h3 {
+        font-size: 16px;
+    }
+}

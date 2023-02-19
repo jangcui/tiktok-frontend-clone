@@ -1,0 +1,86 @@
+.wrapper {
+    flex: 1 1 auto;
+    padding: 16px 24px 67px 16px;
+
+    .container {
+        display: flex;
+        flex-direction: column;
+
+        .tab-btn {
+            position: relative;
+            display: flex;
+
+            &::before {
+                content: '';
+                position: absolute;
+                height: 0.5px;
+                left: 8px;
+                right: 8px;
+                background: #e3e3e4;
+                bottom: 0;
+            }
+        }
+        .tab-items {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            text-align: center;
+            padding: 10px 0px;
+            font-size: 16px;
+            line-height: 22px;
+            color: #16182399;
+            transition: all 0s ease 0s, all 0.3s ease 0s;
+            width: 120px;
+            cursor: pointer;
+        }
+
+        .active-top {
+            color: #000;
+
+            &::before {
+                content: '';
+                position: absolute;
+                height: 2px;
+                border-radius: 6px;
+                width: 36px;
+                background: #000;
+                bottom: 0;
+            }
+        }
+
+        .active-accounts {
+            color: #000;
+
+            &::before {
+                content: '';
+                position: absolute;
+                height: 2px;
+                width: 80px;
+                background: #000;
+                border-radius: 6px;
+                bottom: 0;
+            }
+        }
+        .active-videos {
+            color: #000;
+            transition: all 0s ease 0s, all 0.3s ease 0s;
+
+            &::before {
+                content: '';
+                position: absolute;
+                height: 2px;
+                border-radius: 6px;
+                width: 52px;
+                transition: width 0.3s ease 0.3s, width 0.3s ease 0s;
+                background: #000;
+                bottom: 0;
+            }
+        }
+    }
+    .content {
+        margin-top: 16px;
+        width: calc(100% - 12px);
+    }
+}

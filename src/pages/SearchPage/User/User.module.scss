@@ -1,0 +1,81 @@
+.wrapper {
+    display: flex;
+    flex-direction: column;
+}
+.loading {
+    margin-top: 10px;
+    &::after {
+        content: '';
+        position: absolute;
+        height: 0.5px;
+        width: 100%;
+        background: #e3e3e4;
+        bottom: 0;
+    }
+}
+.user {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+
+    &::after {
+        content: '';
+        position: absolute;
+        height: 0.5px;
+        width: 100%;
+        background: #e3e3e4;
+        bottom: 0;
+    }
+    &:hover {
+        background-color: #f8f8f8;
+        cursor: pointer;
+    }
+}
+.avatar-user {
+    width: 60px;
+    height: 60px;
+    border-radius: 100%;
+    margin: 16px;
+}
+.name {
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 25px;
+}
+.title {
+    color: #161823bf;
+    font-size: 14px;
+    line-height: 20px;
+    margin-top: 1px;
+}
+.nick-name {
+    margin: 0 6px;
+}
+.count {
+    color: #161823;
+    font-weight: 600;
+    font-size: 16px;
+    margin: 0 2px;
+}
+.bio {
+    margin-top: 4px;
+    font-size: 14px;
+}
+
+.load-more {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 14px 0;
+
+    .btn-more {
+        align-items: center;
+        display: flex;
+        justify-content: space-between;
+        font-size: 16px;
+        width: 100px;
+        color: #16182380;
+        cursor: pointer;
+    }
+}
