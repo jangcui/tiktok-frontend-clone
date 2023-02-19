@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import { Switch } from 'antd';
 import className from 'classnames/bind';
 
 import Button from '~/component/Button';
@@ -169,12 +168,12 @@ function UploadPage() {
                                 <div className={cx('switch')}>
                                     <div className={cx('switch-title')}>
                                         <h2>Run a copyright check</h2>
-                                        <Switch
+                                        {/* <Switch
                                             className={cx('switch-btn')}
                                             checked={isCopyright}
                                             onClick={() => setIsCopyright(!isCopyright)}
                                             style={{ backgroundColor: isCopyright && '#0be09b', marginLeft: '16px' }}
-                                        />
+                                        /> */}
                                     </div>
                                     <div className={cx('copyright')}>
                                         {isCopyright ? (
