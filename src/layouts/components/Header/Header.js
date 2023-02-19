@@ -10,7 +10,6 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Tippy from '@tippyjs/react';
-import images from '~/asset/images';
 
 import Button from '~/component/Button';
 import { MessageIcon, UploadIcon } from '~/component/Icons';
@@ -21,6 +20,7 @@ import config from '~/config';
 import styles from './Header.module.scss';
 import UserContext from '~/component/Contexts/UserContext/UserContext';
 import useModalAuthContext from '~/component/Contexts/useModalAuthContext';
+import images from '~/asset/images';
 
 const cx = className.bind(styles);
 
