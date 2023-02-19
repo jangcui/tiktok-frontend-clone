@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import logo from '~/asset/images/';
 import className from 'classnames/bind';
 import { Link } from 'react-router-dom';
 import {
@@ -20,7 +21,6 @@ import config from '~/config';
 import styles from './Header.module.scss';
 import UserContext from '~/component/Contexts/UserContext/UserContext';
 import useModalAuthContext from '~/component/Contexts/useModalAuthContext';
-import images from '~/asset/images';
 
 const cx = className.bind(styles);
 
@@ -114,13 +114,13 @@ function Header({ small }) {
             default:
         }
     };
-
+    console.log(logo.logo);
     return (
         <header className={cx('wrapper')}>
             <div className={cx('inner', small && 'small')}>
                 <div className={cx('logo')}>
                     <Link to={config.routes.home} className={cx('logo-link')}>
-                        <Image src={images.logo} alt="logo-tiktok" />
+                        <Image src={logo.logo} alt="logo-tiktok" />
                     </Link>
                 </div>
 
