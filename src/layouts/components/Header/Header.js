@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import logo from '~/asset/images/';
 import className from 'classnames/bind';
 import { Link } from 'react-router-dom';
 import {
@@ -11,6 +10,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Tippy from '@tippyjs/react';
+import images from '~/asset/images';
 
 import Button from '~/component/Button';
 import { MessageIcon, UploadIcon } from '~/component/Icons';
@@ -114,13 +114,13 @@ function Header({ small }) {
             default:
         }
     };
-    console.log(logo.logo);
+
     return (
         <header className={cx('wrapper')}>
             <div className={cx('inner', small && 'small')}>
                 <div className={cx('logo')}>
                     <Link to={config.routes.home} className={cx('logo-link')}>
-                        <Image src={logo.logo} alt="logo-tiktok" />
+                        <Image src={images.logo} alt="logo-tiktok" />
                     </Link>
                 </div>
 
