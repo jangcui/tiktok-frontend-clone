@@ -10,7 +10,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Tippy from '@tippyjs/react';
-import images from '~/asset/Images';
+import images from '~/asset/images';
 
 import Button from '~/component/Button';
 import { MessageIcon, UploadIcon } from '~/component/Icons';

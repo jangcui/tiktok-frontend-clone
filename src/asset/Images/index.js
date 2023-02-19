@@ -1,6 +1,6 @@
-const Images = {
-    logo: require('../images/logo.svg').default,
-    noImage: require('../images/no-image.png'),
+const images = {
+    logo: require('~/asset/images/logo.svg').default,
+    noImage: require('~/asset/images/no-image.png'),
 };
 
-export default Images;
+export default images;
