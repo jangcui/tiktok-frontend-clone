@@ -12,7 +12,7 @@ const cx = classNames.bind(styles);
 const RANDOM = () => Math.floor(Math.random() * 20 + 1);
 function SuggestedPage() {
     const [page, setPage] = useState(RANDOM);
-    const [dataUser, setDataUser] = useState([{}]);
+    const [dataUser, setDataUser] = useState([]);
     const deBoundUser = useDebounce(dataUser, 1000);
     const handleNextRender = () => {
         setPage(page + 1);
