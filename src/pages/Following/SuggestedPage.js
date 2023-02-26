@@ -18,10 +18,14 @@ function SuggestedPage() {
     const handleNextRender = () => {
         setPage(page + 1);
     };
+
     useEffect(() => {
-        if (page > 20) {
-            return setPage(RANDOM);
+        if (page >= 20 || page === 0) {
+            setPage(1);
         }
+    }, [page]);
+
+    useEffect(() => {
         Services.getSuggested({ page: page, perPage: 10 }).then((data) => {
             setDataUser((preUser) => {
                 return [...preUser, ...data];
