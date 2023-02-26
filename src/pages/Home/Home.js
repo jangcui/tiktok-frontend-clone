@@ -17,9 +17,7 @@ function Home() {
     useEffect(() => {
         Services.getVideoList({ page: page }).then((data) => {
             if (data) {
-                setDataHome((preUser) => {
-                    return [...preUser, ...data.filter((user) => !user.user.is_followed)]; //loc nhung account khong follow
-                });
+                setDataHome((preUser) => [...preUser, ...data.filter((user) => !user.user.is_followed)]);
             }
         });
     }, [page]);

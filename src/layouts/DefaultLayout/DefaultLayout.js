@@ -24,6 +24,8 @@ function DefaultLayout({ children }) {
             window.removeEventListener('scroll', onScroll);
             window.addEventListener('scroll', onScroll, { passive: true });
             return () => window.removeEventListener('scroll', onScroll);
+        } else {
+            return;
         }
     }, []);
 
