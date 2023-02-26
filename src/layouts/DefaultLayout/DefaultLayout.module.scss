@@ -1,3 +1,6 @@
+// @import '/src/ResponsiveStyle/responsiveStyle';
+@use '/src/ResponsiveStyle' as *;
+
 .wrapper {
     display: flex;
     flex-direction: column;
@@ -13,6 +16,10 @@
     margin-top: var(--default-layout-header-height);
     // min-height: 1000px;
     // overflow: hidden;
+
+    @include breakpoint(medium) {
+        padding-left: unset;
+    }
 }
 
 .sub {
@@ -20,8 +27,10 @@
 }
 .content {
     width: 100%;
-    flex: 1;
+    flex: 1 1;
     height: 100%;
+    display: flex;
+    justify-content: flex-end;
 }
 .wrap-btn {
     position: fixed;

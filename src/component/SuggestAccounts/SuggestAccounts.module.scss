@@ -1,3 +1,5 @@
+@import '/src/ResponsiveStyle/responsiveStyle';
+
 .wrapper {
     position: relative;
     &::before {
@@ -23,6 +25,7 @@
     display: flex;
     padding: 8px;
     cursor: pointer;
+    justify-content: center;
 
     &:hover {
         background-color: rgba(22, 24, 35, 0.03);
@@ -69,3 +72,13 @@
     cursor: pointer;
 }
 //sub account items
+@include breakpoint(medium) {
+    .info,
+    .nickname,
+    .check,
+    .name,
+    .label,
+    .more-btn {
+        display: none;
+    }
+}

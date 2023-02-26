@@ -1,3 +1,5 @@
+@import '/src/ResponsiveStyle/responsiveStyle';
+
 .container {
     margin-top: 24px;
     color: #16182380;
@@ -5,11 +7,13 @@
     text-align: center;
     width: 260px;
     height: 458px;
-
+    @include breakpoint(small) {
+        margin-top: unset;
+        margin-bottom: 24px;
+    }
     .wrap-video {
         display: flex;
         flex-direction: column;
-        justify-content: center;
         align-items: center;
         width: 100%;
 
@@ -22,7 +26,7 @@
             object-fit: fill;
         }
         .btn-change {
-            margin-top: 20px;
+            margin-top: 12px;
         }
 
         .loader {

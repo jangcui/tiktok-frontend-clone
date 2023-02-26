@@ -44,7 +44,6 @@ function DefaultLayout({ children }) {
                 <div className={cx('sidebar')}>
                     <Sidebar />
                 </div>
-                <div className={cx('sub')} />
                 <div className={cx('content')}>{children}</div>
             </div>
             <div className={cx('wrap-btn')} ref={btnRef} onClick={handleScroll}>

@@ -1,3 +1,5 @@
+@import '/src/ResponsiveStyle/responsiveStyle';
+
 .menu-item {
     display: flex;
     font-size: 1.8rem;
@@ -21,10 +23,18 @@
     &:hover {
         background-color: rgba(22, 24, 35, 0.03);
     }
+    @include breakpoint(medium) {
+        display: flex;
+        justify-content: center;
+        padding: 8px;
+    }
 }
 
 .title {
     margin-left: 8px;
+    @include breakpoint(medium) {
+        display: none;
+    }
 }
 
 .icon,

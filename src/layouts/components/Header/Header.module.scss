@@ -1,3 +1,5 @@
+@import '/src/ResponsiveStyle/responsiveStyle';
+
 .wrapper {
     --search-border-radius: 92px;
     --search-height: 46px;
@@ -41,7 +43,7 @@
 .more-btn {
     padding: 4px 8px;
     font-size: 2rem;
-    margin-left: 24px;
+    margin-left: 14px;
     background-color: transparent;
     cursor: pointer;
 }

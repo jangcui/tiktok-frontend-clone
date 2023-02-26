@@ -16,10 +16,9 @@ function Video(
     { dataVideo, control = true, seekBar = true, typeVideo, onClick, classVideo, classIcon, ...props },
     ref,
 ) {
-    const volumes = VolumeContext();
+    const { volume } = VolumeContext();
     const videoRef = useRef();
-    const { volume } = volumes;
-    const [isPlaying, setIsPlaying] = useState(true);
+    const [isPlaying, setIsPlaying] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
     const [currentTimeVideo, setCurrentVideo] = useState(0);
     const [durationVideo, setDurationVideo] = useState(0);
@@ -35,7 +34,7 @@ function Video(
     }));
 
     const [ViewRef, inView, entry] = useInView({
-        threshold: 0,
+        threshold: 0.5,
         trackVisibility: true,
         delay: 200,
     });
@@ -47,15 +46,16 @@ function Video(
     }, [volume]);
     useEffect(() => {
         if (inView && entry?.isVisible) {
-            if (isPlaying) {
-                videoRef.current.play();
-            } else {
-                videoRef.current.pause();
-            }
+            setIsPlaying(true);
         } else {
-            videoRef.current.pause();
+            setIsPlaying(false);
         }
-    }, [isPlaying, inView, entry?.isVisible]);
+    }, [inView, entry?.isVisible]);
+    useEffect(() => {
+        if (videoRef.current) {
+            isPlaying ? videoRef.current.play() : videoRef.current.pause();
+        }
+    }, [isPlaying]);
 
     const handlePlay = () => {
         setIsPlaying(!isPlaying);
@@ -86,7 +86,7 @@ function Video(
                             </div>
                         </div>
                     )}
-                    {control && <div className={cx('view-video')} ref={ViewRef}></div>}
+                    {control && <div className={cx('view-video')} ref={ViewRef} />}
                     <video
                         className={classVideo}
                         tabIndex="2"

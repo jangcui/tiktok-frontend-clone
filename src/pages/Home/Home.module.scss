@@ -1,13 +1,7 @@
+@import '/src/ResponsiveStyle/responsiveStyle';
+
 .wrapper {
-    display: flex;
-    flex-direction: column;
-    background-color: var(--main-color);
-    width: 692px;
-    max-width: 692px;
-    margin-right: 16px;
-    margin-left: 16px;
-    padding: 24px 0;
-    min-height: 1000px;
+    @include styleLayout;
 }
 .loading {
     flex: 1;

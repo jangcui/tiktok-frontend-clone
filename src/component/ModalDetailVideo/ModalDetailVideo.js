@@ -47,14 +47,16 @@ function ModalDetailVideo({ dataVideo, dataList, isOpen, onClose, index, setInde
         <div className={cx('wrapper')}>
             {data && (
                 <div className={cx('container')}>
-                    <VideoDetail
-                        data={data}
-                        index={index}
-                        dataList={dataList}
-                        handleNext={handleNext}
-                        handlePrev={handlePrev}
-                        handleClose={handleClose}
-                    />
+                    <div className={cx('video')}>
+                        <VideoDetail
+                            data={data}
+                            index={index}
+                            dataList={dataList}
+                            handleNext={handleNext}
+                            handlePrev={handlePrev}
+                            handleClose={handleClose}
+                        />
+                    </div>
                     <div className={cx('comments')}>
                         <CommentDetail data={data} />
                     </div>

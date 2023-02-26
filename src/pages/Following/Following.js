@@ -31,9 +31,7 @@ function Following() {
             })
             .catch((error) => console.log(error));
     }, [page]);
-    useEffect(() => {
-        window.history.pushState({}, '', `/following`);
-    }, []);
+
     return (
         <div className={cx('wrapper')}>
             {!user || data.length === 0 ? (

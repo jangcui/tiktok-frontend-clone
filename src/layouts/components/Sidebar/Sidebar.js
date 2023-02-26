@@ -78,8 +78,10 @@ function Sidebar({ small = false }) {
                 <SuggestAccounts label="Suggested accounts" data={dataUser} />
 
                 {user && <SuggestAccounts label="Following accounts" data={dataFollow} />}
-                <DiscoverSidebar />
-                <FooterSidebar />
+                <div className={cx('footer')}>
+                    <DiscoverSidebar />
+                    <FooterSidebar />
+                </div>
             </Menu>
         </div>
     );

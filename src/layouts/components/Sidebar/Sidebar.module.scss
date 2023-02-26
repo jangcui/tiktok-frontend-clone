@@ -4,7 +4,6 @@
     max-width: 350px;
     padding: 20px 0 26px 8px;
     margin-left: -12px;
-    padding: 20px 0 26px 8px;
     position: fixed;
     overflow-y: hidden;
     background-color: #fff;
@@ -14,6 +13,10 @@
 
     &:hover {
         overflow-y: auto;
+
+        @include breakpoint(medium) {
+            overflow: hidden;
+        }
     }
     &::-webkit-scrollbar {
         width: 4px;
@@ -24,8 +27,7 @@
     }
     @include breakpoint(small) {
     }
-    @include breakpoint(medium) {
-    }
+
     @include breakpoint(large) {
     }
 }
@@ -34,6 +36,7 @@
     position: fixed;
     max-width: 260px;
     padding-left: 16px;
+    left: 0;
     margin-top: 61px;
 }
 
@@ -57,5 +60,21 @@
         font-size: 15px;
         margin-bottom: 16px;
         line-height: 20px;
+    }
+}
+
+@include breakpoint(medium) {
+    .wrapper {
+        width: 84px;
+        border-right: 1px solid #1618231f;
+        box-shadow: 0px 2px 8px #0000000f;
+        overflow: hidden;
+        padding-left: 12px;
+    }
+    .footer {
+        display: none;
+    }
+    .btn-login {
+        display: none;
     }
 }

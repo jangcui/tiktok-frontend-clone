@@ -33,23 +33,23 @@ const cx = classNames.bind(styles);
 
 const MENU_ITEMS = [
     {
-        icon: <DipIcon width={'24px'} height={'24px'} />,
+        icon: <DipIcon width={'22px'} height={'22px'} />,
         title: 'Embed',
     },
     {
-        icon: <TelegramRedIcon width={'24px'} height={'24px'} />,
+        icon: <TelegramRedIcon width={'22px'} height={'22px'} />,
         title: 'Send to friends',
     },
     {
-        icon: <FacebookIcon width={'24px'} height={'24px'} />,
+        icon: <FacebookIcon width={'22px'} height={'22px'} />,
         title: 'Share to Facebook',
     },
     {
-        icon: <WhatsAppIcon width={'24px'} height={'24px'} />,
+        icon: <WhatsAppIcon width={'22px'} height={'22px'} />,
         title: 'Share to WhatsApp',
     },
     {
-        icon: <LinksIcon width={'24px'} height={'24px'} />,
+        icon: <LinksIcon width={'22px'} height={'22px'} />,
         title: 'Share to Twitter',
     },
 ];

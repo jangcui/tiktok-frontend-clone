@@ -23,6 +23,7 @@ function App() {
                             <Route
                                 key={i}
                                 path={route.path}
+                                exact
                                 element={
                                     <>
                                         <PopUpNotify />

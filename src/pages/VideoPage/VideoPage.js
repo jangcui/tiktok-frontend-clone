@@ -44,10 +44,8 @@ function VideoPage() {
     }, [pathName]);
     return (
         <div className={cx('wrapper')}>
-            <div className={cx('header')}>
-                <Header small />
-                <Sidebar small />
-            </div>
+            <Header small />
+            <Sidebar small />
             <div className={cx('container')}>
                 {dataCmt ? (
                     <>

@@ -1,7 +1,11 @@
-.wrapper {
-    flex: 1 1 auto;
-    padding: 16px 24px 67px 16px;
+@import '/src/ResponsiveStyle/responsiveStyle';
 
+.wrapper {
+    @include styleLayout;
+    min-width: calc(100% - 360px);
+    @include breakpoint(medium) {
+        min-width: calc(100% - 90px);
+    }
     .container {
         display: flex;
         flex-direction: column;

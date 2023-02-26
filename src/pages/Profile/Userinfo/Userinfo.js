@@ -27,16 +27,6 @@ function Userinfo({ dataUser, isEditBtn }) {
                         )}
                     </div>
                 </div>
-                <div className={cx('action')}>
-                    <span>
-                        <ShareIcon />
-                    </span>
-                    {!isEditBtn && (
-                        <span>
-                            <DotsIcon />
-                        </span>
-                    )}
-                </div>
             </div>
             <div className={cx('count')}>
                 <b>{dataUser.followings_count}</b>

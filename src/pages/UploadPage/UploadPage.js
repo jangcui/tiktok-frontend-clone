@@ -1,8 +1,8 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import className from 'classnames/bind';
 
 import Button from '~/component/Button';
-import { DownIcon, WarningIcon } from '~/component/Icons';
+import { DownIcon } from '~/component/Icons';
 import * as Services from '~/Services/Services';
 import styles from './UploadPage.module.scss';
 import FooterUploadPage from './FooterUploadPage';
@@ -20,7 +20,6 @@ const valueViewAble = [
 function UploadPage() {
     const formData = new FormData();
     const { setAlert } = NotifyContext();
-    const [isCopyright, setIsCopyright] = useState(false);
     const [isActive, setIsActive] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
 
@@ -32,7 +31,6 @@ function UploadPage() {
         { id: 2, isAllow: true, name: 'Duet' },
         { id: 3, isAllow: true, name: 'Stitch' },
     ]);
-
     const [viewAble, setViewAble] = useState({
         choses: 'Public',
         active: valueViewAble[0],
@@ -95,7 +93,7 @@ function UploadPage() {
         <>
             <div className={cx('wrapper')}>
                 <div className={cx('layout')}>
-                    <div className={cx('container', !isCopyright && 'animation')}>
+                    <div className={cx('container')}>
                         {isLoading && (
                             <div className={cx('wrap-loading')}>
                                 <div className={cx('loader')}>
@@ -168,26 +166,13 @@ function UploadPage() {
                                 <div className={cx('switch')}>
                                     <div className={cx('switch-title')}>
                                         <h2>Run a copyright check</h2>
-                                        {/* <Switch
-                                            className={cx('switch-btn')}
-                                            checked={isCopyright}
-                                            onClick={() => setIsCopyright(!isCopyright)}
-                                            style={{ backgroundColor: isCopyright && '#0be09b', marginLeft: '16px' }}
-                                        /> */}
                                     </div>
                                     <div className={cx('copyright')}>
-                                        {isCopyright ? (
-                                            <span className={cx('copyright-content')}>
-                                                <WarningIcon />
-                                                <p>Copyright check will not begin until your video is uploaded.</p>
-                                            </span>
-                                        ) : (
-                                            <span>
-                                                We'll check your video for potential copyright infringements on used
-                                                sounds. If infringements are found, you can edit the video before
-                                                posting. <b>Learn more</b>
-                                            </span>
-                                        )}
+                                        <span>
+                                            We'll check your video for potential copyright infringements on used sounds.
+                                            If infringements are found, you can edit the video before posting.{' '}
+                                            <b>Learn more</b>
+                                        </span>
                                     </div>
                                 </div>
                                 <div className={cx('note')}></div>

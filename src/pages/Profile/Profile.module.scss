@@ -1,3 +1,5 @@
+@import '/src/ResponsiveStyle/responsiveStyle';
+
 .wrapper {
     width: 100%;
     height: 100vh;
@@ -6,7 +8,8 @@
 .container {
     display: flex;
     height: 100%;
-    justify-content: flex-start;
+    width: 100%;
+    justify-content: flex-end;
 
     .loading {
         position: fixed;
@@ -14,16 +17,18 @@
         right: 50%;
     }
 }
-.sidebar {
-    width: 240px;
-}
 .content {
+    width: calc(100% - 250px);
     margin-top: 60px;
     margin-left: 20px;
-    flex: 1 1;
     display: flex;
     flex-direction: column;
     padding: 32px 24px;
+
+    @include breakpoint(medium) {
+        width: calc(100% - 90px);
+        padding-left: unset;
+    }
 }
 
 .wrap-videos {

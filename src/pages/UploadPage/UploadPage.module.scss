@@ -1,19 +1,9 @@
+@use '/src/ResponsiveStyle' as *;
+
 .wrapper {
     overflow: auto;
 }
 
-.animation {
-    animation: identifier 0.1s ease;
-
-    @keyframes identifier {
-        from {
-            transform: translateX(-10px);
-        }
-        to {
-            transform: translateX(0);
-        }
-    }
-}
 .layout {
     width: 100%;
     display: flex;
@@ -25,8 +15,10 @@
         font-size: 16px;
         font-weight: 600;
         margin-bottom: 4px;
+        margin-top: 16px;
     }
 }
+
 .container {
     width: 1100px;
     margin-top: 86px;
@@ -35,6 +27,11 @@
     box-shadow: rgb(0 0 0 / 6%) 0px 2px 8px;
     border-radius: 8px;
     padding: 24px 40px;
+    animation: identifier 0.1s ease;
+
+    @include breakpoint(small) {
+        padding-top: unset;
+    }
 
     .wrap-loading {
         align-items: center;
@@ -81,32 +78,39 @@
             left: 44px;
             animation-delay: 0.8s;
         }
-
-        @keyframes bars1 {
-            0% {
-                height: 5px;
-                transform: translateY(0px);
-                transform: translateY(0px);
-                opacity: 0.25;
-            }
-            25% {
-                height: 30px;
-                transform: translateY(15px);
-                transform: translateY(15px);
-                opacity: 1;
-            }
-            50% {
-                height: 5px;
-                transform: translateY(0px);
-                transform: translateY(0px);
-                opacity: 0.25;
-            }
-            100% {
-                height: 5px;
-                transform: translateY(0px);
-                transform: translateY(0px);
-                opacity: 0.25;
-            }
+    }
+    @keyframes bars1 {
+        0% {
+            height: 5px;
+            transform: translateY(0px);
+            transform: translateY(0px);
+            opacity: 0.25;
+        }
+        25% {
+            height: 30px;
+            transform: translateY(15px);
+            transform: translateY(15px);
+            opacity: 1;
+        }
+        50% {
+            height: 5px;
+            transform: translateY(0px);
+            transform: translateY(0px);
+            opacity: 0.25;
+        }
+        100% {
+            height: 5px;
+            transform: translateY(0px);
+            transform: translateY(0px);
+            opacity: 0.25;
+        }
+    }
+    @keyframes identifier {
+        from {
+            transform: translateX(-10px);
+        }
+        to {
+            transform: translateX(0);
         }
     }
 }
@@ -121,20 +125,33 @@
         font-weight: 400;
         color: #16182380;
     }
+
+    @include breakpoint(phone) {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
 }
 .content {
     display: flex;
     margin-top: 24px;
     margin-bottom: 130px;
 
+    @include breakpoint(small) {
+        flex-direction: column;
+        align-items: center;
+        margin-top: 14px;
+    }
+
     .form-upload {
         display: flex;
         flex-direction: column;
         flex: 1;
         margin-left: 24px;
+        margin-top: 16px;
 
         .viewable {
-            margin-bottom: 40px;
+            margin-bottom: 20px;
 
             .drop-down {
                 position: relative;
@@ -211,7 +228,7 @@
         .select-wrapper {
             display: flex;
             flex-direction: column;
-            margin-bottom: 40px;
+            margin-bottom: 20px;
 
             .selector {
                 display: flex;
@@ -262,7 +279,7 @@
             display: flex;
             justify-content: flex-start;
             flex-direction: column;
-            margin-bottom: 40px;
+            margin-bottom: 20px;
 
             .switch-title {
                 justify-content: flex-start;
@@ -300,6 +317,11 @@
         }
         .btn-post {
             display: flex;
+            z-index: 99;
+
+            @include breakpoint(small) {
+                justify-content: center;
+            }
         }
     }
 }

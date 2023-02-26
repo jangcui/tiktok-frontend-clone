@@ -37,10 +37,9 @@ function Profile() {
             setListVideo(dataUser.videos);
         }
     }, [dataUser]);
-    console.log(nickName);
     useEffect(() => {
         if (user) {
-            if (nickName === `/${user.nickname}`) {
+            if (nickName === `/@${user.nickname}`) {
                 setIsEditBtn(true);
             } else {
                 setIsEditBtn(false);
@@ -52,6 +51,7 @@ function Profile() {
         setIsLoading(true);
         Services.getAnUser(nickName).then((data) => {
             if (data) {
+                console.log(data);
                 setData(data);
             }
         });
@@ -76,9 +76,7 @@ function Profile() {
                     isOpen={isOpen}
                     onClose={() => setIsOpen(false)}
                 />
-                <div className={cx('sidebar')}>
-                    <Sidebar small />
-                </div>
+                <Sidebar small />
                 {isLoading ? (
                     <div className={cx('loading')}>
                         <Loading />

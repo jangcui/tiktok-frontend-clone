@@ -5,13 +5,14 @@ import AccountItems from '~/component/AccountItems';
 
 import * as Services from '~/Services/Services';
 
-import { faCircleXmark, faMagnifyingGlass, faSpinner } from '@fortawesome/free-solid-svg-icons';
+import { faCircleXmark, faSpinner } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useDebounce } from '~/hook';
 
 import styles from './Search.module.scss';
 import className from 'classnames/bind';
 import { Link, useLocation } from 'react-router-dom';
+import { SearchIcon } from '~/component/Icons';
 const cx = className.bind(styles);
 
 function Search() {
@@ -63,7 +64,7 @@ function Search() {
         }
     };
     return (
-        <div>
+        <>
             <HeadlessTippy
                 interactive
                 appendTo={() => document.body}
@@ -100,16 +101,14 @@ function Search() {
                         <button
                             className={cx('search-btn')}
                             onMouseDown={(e) => e.preventDefault()}
-                            onClick={() => {
-                                handleHideResult();
-                            }}
+                            onClick={() => handleHideResult()}
                         >
-                            <FontAwesomeIcon icon={faMagnifyingGlass} />
+                            <SearchIcon />
                         </button>
                     </Link>
                 </div>
             </HeadlessTippy>
-        </div>
+        </>
     );
 }
 

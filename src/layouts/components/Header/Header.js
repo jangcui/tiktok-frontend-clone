@@ -122,7 +122,6 @@ function Header({ small }) {
                         <Image src={images.logo} alt="logo-tiktok" />
                     </Link>
                 </div>
-
                 <Search />
                 <div className={cx('actions')}>
                     <>

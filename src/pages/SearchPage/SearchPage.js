@@ -3,7 +3,6 @@ import { NavLink, Outlet, Route, Routes, useLocation } from 'react-router-dom';
 
 import styles from './SearchPage.module.scss';
 import Videos from './Videos';
-
 import User from './User';
 
 const cx = classNames.bind(styles);

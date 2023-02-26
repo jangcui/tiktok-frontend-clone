@@ -1,3 +1,5 @@
+@import '/src/ResponsiveStyle/responsiveStyle';
+
 .wrap-comment {
     display: flex;
     flex-direction: column;
@@ -6,6 +8,9 @@
     height: 100%;
     background-color: #fff;
 
+    @include breakpoint(small) {
+        padding-top: unset;
+    }
     .user {
         position: relative;
         display: flex;
@@ -16,6 +21,13 @@
         justify-content: space-between;
         flex: 0 0 82px;
 
+        @include breakpoint(small) {
+            margin-bottom: unset;
+        }
+
+        @include breakpoint(medium) {
+            padding-inline: 20px;
+        }
         .info {
             flex: 1;
             &:hover span {
@@ -109,6 +121,9 @@
         flex-shrink: 0;
         margin-bottom: 16px;
 
+        @include breakpoint(medium) {
+            padding-inline: 20px;
+        }
         .des {
             font-size: 16px;
             line-height: 22px;
@@ -119,6 +134,9 @@
             margin-top: 10px;
             margin-bottom: 8px;
 
+            @include breakpoint(small) {
+                line-height: unset;
+            }
             h4 {
                 margin-left: 12px;
 
@@ -130,7 +148,6 @@
         .action {
             position: relative;
             display: flex;
-            flex-direction: row;
             align-items: center;
             justify-content: space-between;
 
@@ -176,6 +193,9 @@
                     margin-left: 6px;
                     display: flex;
                     align-items: center;
+                    @include breakpoint(medium) {
+                        font-size: 12px;
+                    }
                 }
             }
         }
@@ -216,16 +236,17 @@
         padding-top: 12px;
         padding-inline: 24px;
         margin-bottom: 78px;
-        background-color: rgb(248, 248, 248);
+        background-color: #f8f8f8;
         border-top: 1px solid #16182333;
         border-bottom: 1px solid #16182333;
         overflow: hidden auto;
+        min-height: 250px;
         flex-grow: 1;
     }
     .post-comment {
         flex: 0 0 auto;
         position: absolute;
-        background-color: rgb(255, 255, 255);
+        background-color: #fff;
         bottom: 0;
         width: 100%;
         padding: 20px 16px;
