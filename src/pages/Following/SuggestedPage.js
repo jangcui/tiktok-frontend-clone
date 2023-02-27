@@ -19,8 +19,8 @@ function SuggestedPage() {
     };
 
     useEffect(() => {
-        if (page >= 20 || page === 0) {
-            setPage(1);
+        if (page > 18) {
+            setPage(RANDOM);
         }
     }, [page]);
 
@@ -28,7 +28,7 @@ function SuggestedPage() {
         Services.getSuggested({ page: page, perPage: 10 }).then((data) => {
             setDataUser((preUser) => [...preUser, ...data]);
         });
-    }, [page]);
+    }, [page, dataUser]);
     return (
         <>
             <InfiniteScroll

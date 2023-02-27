@@ -202,6 +202,14 @@ export const postVideo = async (formData) => {
         console.log(error);
     }
 };
+export const createVideo = async (formData) => {
+    try {
+        const res = await httpRequest.post('videos', formData);
+        return res.data;
+    } catch (error) {
+        console.log(error);
+    }
+};
 export const deleteVideo = async ({ id }) => {
     try {
         const res = await httpRequest.Delete(`videos/${id}`);

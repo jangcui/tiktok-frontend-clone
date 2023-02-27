@@ -2,7 +2,7 @@ import { useState } from 'react';
 import className from 'classnames/bind';
 
 import Button from '~/component/Button';
-import { DownIcon } from '~/component/Icons';
+import { DownIcon, WarningIcon } from '~/component/Icons';
 import * as Services from '~/Services/Services';
 import styles from './UploadPage.module.scss';
 import FooterUploadPage from './FooterUploadPage';
@@ -31,6 +31,7 @@ function UploadPage() {
         { id: 2, isAllow: true, name: 'Duet' },
         { id: 3, isAllow: true, name: 'Stitch' },
     ]);
+
     const [viewAble, setViewAble] = useState({
         choses: 'Public',
         active: valueViewAble[0],
@@ -62,6 +63,7 @@ function UploadPage() {
         formData.append('description', valueDes);
         formData.append('upload_file', fileVideo);
         formData.append('thumbnail_time', '3');
+        formData.append('music', nameMusic);
 
         allowUser.forEach((allow) => {
             if (allow.isAllow) {
@@ -93,7 +95,7 @@ function UploadPage() {
         <>
             <div className={cx('wrapper')}>
                 <div className={cx('layout')}>
-                    <div className={cx('container')}>
+                    <div className={cx('container', 'animation')}>
                         {isLoading && (
                             <div className={cx('wrap-loading')}>
                                 <div className={cx('loader')}>

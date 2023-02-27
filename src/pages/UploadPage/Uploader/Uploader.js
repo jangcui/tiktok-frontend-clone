@@ -12,42 +12,42 @@ function Uploader({ fileVideo, setFileVideo }) {
     const [convertFile, setConvertFile] = useState();
     const [isLoading, setIsLoading] = useState(true);
 
-    function previewFile(e) {
+    const previewFile = (e) => {
         setIsLoading(false);
-        const reader = new FileReader();
         const selectedFile = e.target.files[0];
+        const reader = new FileReader();
         if (selectedFile) {
-            reader.readAsDataURL(selectedFile);
             setFileVideo(selectedFile);
+            reader.readAsDataURL(selectedFile);
         }
-        reader.onload = (readerEvent) => {
+        reader.onloadend = (readerEvent) => {
             if (selectedFile.type.includes('video')) {
                 setIsLoading(true);
                 setConvertFile(readerEvent.target.result);
             }
         };
-    }
+    };
     useEffect(() => {
         !fileVideo && setConvertFile(null);
     }, [fileVideo]);
     return (
         <>
             <div className={cx('container')}>
-                <input type="file" hidden onChange={previewFile} ref={fileRef} />
+                <input type="file" hidden onInput={previewFile} ref={fileRef} />
 
                 {convertFile ? (
                     <div className={cx('wrap-video')}>
                         {isLoading ? (
                             <Video src={convertFile} classVideo={cx('video-preview')} />
                         ) : (
-                            <>
+                            <div className={cx('loading')}>
                                 <div className={cx('loader')}>
                                     <span />
                                     <span />
                                     <span />
                                 </div>
                                 <p>Just a second...</p>
-                            </>
+                            </div>
                         )}
                         <Button normal className={cx('btn-change')} onClick={() => fileRef.current.click()}>
                             Change Video
