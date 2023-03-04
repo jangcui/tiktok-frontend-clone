@@ -124,7 +124,7 @@ function IconVideo({ data, onOpenVideo }) {
                     </span>
                 </div>
                 <strong>{data.comments_count}</strong>
-                <Menu items={MENU_ITEMS} delay={[0, 300]} offset={[8, 8]} placement="top-start" menuShare>
+                <Menu items={MENU_ITEMS} delay={[0, 300]} offset={[100, 8]} placement="top" menuShare>
                     <div className={cx('btn-icons')}>
                         <span className={cx('icons')}>
                             <ShareIcon width={'24px'} height={'24px'} />

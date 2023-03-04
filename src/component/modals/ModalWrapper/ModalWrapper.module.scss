@@ -1,0 +1,29 @@
+.wrapper {
+    position: fixed;
+    overflow: hidden;
+    inset: 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+    background: #00000080;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out, visibility 0.2s ease-in-out;
+}
+.visible {
+    opacity: 1;
+    visibility: visible;
+    .container {
+        transform: scale(1);
+    }
+}
+
+.container {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 1px 2px 4px #8888889e;
+    transform: scale(0.1);
+    transition: transform 0.2s ease;
+    max-width: 100%;
+}

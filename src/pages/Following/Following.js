@@ -22,15 +22,17 @@ function Following() {
         setPage(page + 1);
     };
     useEffect(() => {
-        Services.getVideoList({ type: 'following', page: page })
-            .then((data) => {
-                if (data) {
-                    setData((preUser) => [...preUser, ...data]);
-                    console.log(data);
-                }
-            })
-            .catch((error) => console.log(error));
-    }, [page]);
+        if (user) {
+            Services.getVideoList({ type: 'following', page: page })
+                .then((data) => {
+                    if (data) {
+                        setData((preUser) => [...preUser, ...data]);
+                        console.log(data);
+                    }
+                })
+                .catch((error) => console.log(error));
+        }
+    }, [page, user]);
 
     return (
         <div className={cx('wrapper')}>

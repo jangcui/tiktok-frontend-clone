@@ -2,6 +2,7 @@ import classNames from 'classnames/bind';
 import { useEffect, useState } from 'react';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import BtnToggleFollow from '~/component/BtnToggleFollow';
+import UserContext from '~/component/Contexts/UserContext';
 import { CheckIcon } from '~/component/Icons';
 import Loading from '~/component/Loading';
 import { useDebounce } from '~/hook';
@@ -11,6 +12,8 @@ const cx = classNames.bind(styles);
 
 const RANDOM = () => Math.floor(Math.random() * 20 + 1);
 function SuggestedPage() {
+    const user = UserContext();
+
     const [page, setPage] = useState(RANDOM);
     const [dataUser, setDataUser] = useState([]);
     const deBoundUser = useDebounce(dataUser, 1000);
@@ -19,16 +22,17 @@ function SuggestedPage() {
     };
 
     useEffect(() => {
-        if (page > 18) {
-            setPage(RANDOM);
+        if (page > 20) {
+            return setPage(RANDOM);
         }
-    }, [page]);
-
-    useEffect(() => {
-        Services.getSuggested({ page: page, perPage: 10 }).then((data) => {
-            setDataUser((preUser) => [...preUser, ...data]);
-        });
-    }, [page, dataUser]);
+        if (!user) {
+            Services.getSuggested({ page: page, perPage: 12 }).then((data) => {
+                setDataUser((preUser) => {
+                    return [...preUser, ...data];
+                });
+            });
+        }
+    }, [page, user]);
     return (
         <>
             <InfiniteScroll

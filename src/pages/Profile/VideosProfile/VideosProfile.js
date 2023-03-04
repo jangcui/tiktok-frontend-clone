@@ -34,7 +34,7 @@ function VideosProfile({ data, onClick, isEditBtn }) {
                 <div className={cx('no-video')}>
                     <UserIcon className={cx('icon')} />
                     <h2>{!isEditBtn ? 'No content' : 'Upload your first video'}</h2>
-                    <p>{!isEditBtn ? 'This user has not published any videos.' : 'Your videos will appear here'}</p>
+                    <p>{!isEditBtn ? 'You are no liked video yet.' : 'Your videos will appear here'}</p>
                 </div>
             )}
         </>

@@ -5,12 +5,12 @@ export const getVideoList = async ({ type = 'for-you', page }) => {
         const res = await httpRequest.get('videos', {
             params: {
                 type,
-                page: page,
+                page,
             },
         });
         return res.data;
     } catch (error) {
-        console.log('lỡi');
+        console.log('error');
     }
 };
 
@@ -19,7 +19,7 @@ export const getAVideo = async (id) => {
         const res = await httpRequest.get(`videos/${id}`);
         return res.data;
     } catch (error) {
-        console.log('lỡi');
+        console.log('error');
     }
 };
 
@@ -28,7 +28,40 @@ export const getUserVideo = async (id) => {
         const res = await httpRequest.get(`users/${id}/videos`);
         return res.data;
     } catch (error) {
-        console.log('lỡi');
+        console.log('error');
+    }
+};
+
+export const postVideo = async (formData) => {
+    try {
+        const res = await httpRequest.post('videos', formData);
+        return res.data;
+    } catch (error) {
+        console.log(error);
+    }
+};
+export const createVideo = async (formData) => {
+    try {
+        const res = await httpRequest.post('videos', formData);
+        return res.data;
+    } catch (error) {
+        console.log(error);
+    }
+};
+export const deleteVideo = async ({ id }) => {
+    try {
+        const res = await httpRequest.Delete(`videos/${id}`);
+        return res.data;
+    } catch (error) {
+        console.log(error);
+    }
+};
+export const getVideoLiked = async ({ userId }) => {
+    try {
+        const res = await httpRequest.get(`users/${userId}/liked-videos`);
+        return res.data;
+    } catch (error) {
+        console.log(error);
     }
 };
 
@@ -42,7 +75,7 @@ export const getSuggested = async ({ page, per_page }) => {
         });
         return res.data;
     } catch (error) {
-        console.log('lỡi');
+        console.log('error');
     }
 };
 
@@ -57,7 +90,7 @@ export const search = async ({ page, type = 'less', q }) => {
         });
         return res.data;
     } catch (error) {
-        console.log('lỡi');
+        console.log('error');
     }
 };
 
@@ -131,7 +164,7 @@ export const getCommentsList = async (uuid) => {
         const res = await httpRequest.get(`videos/${uuid}/comments`);
         return res.data;
     } catch (error) {
-        console.log('lỡi');
+        console.log('error');
     }
 };
 export const likeAPost = async ({ id }) => {
@@ -139,7 +172,7 @@ export const likeAPost = async ({ id }) => {
         const res = await httpRequest.post(`videos/${id}/like`);
         return res.data;
     } catch (error) {
-        console.log('lỡi');
+        console.log('error');
     }
 };
 export const unLikeAPost = async ({ id }) => {
@@ -147,7 +180,7 @@ export const unLikeAPost = async ({ id }) => {
         const res = await httpRequest.post(`videos/${id}/unlike`);
         return res.data;
     } catch (error) {
-        console.log('lỡi');
+        console.log('error');
     }
 };
 export const likeComment = async (id) => {
@@ -155,7 +188,7 @@ export const likeComment = async (id) => {
         const res = await httpRequest.post(`comments/${id}/like`);
         return res.data;
     } catch (error) {
-        console.log('lỡi');
+        console.log('error');
     }
 };
 export const unLikeComment = async (id) => {
@@ -163,7 +196,7 @@ export const unLikeComment = async (id) => {
         const res = await httpRequest.post(`comments/${id}/unlike`);
         return res.data;
     } catch (error) {
-        console.log('lỡi');
+        console.log('error');
     }
 };
 export const postCreateComment = async (idVideo, comment) => {
@@ -173,7 +206,7 @@ export const postCreateComment = async (idVideo, comment) => {
         });
         return res.data;
     } catch (error) {
-        console.log('lỡi');
+        console.log('error');
     }
 };
 export const deleteComment = async (idComment) => {
@@ -181,7 +214,7 @@ export const deleteComment = async (idComment) => {
         const res = await httpRequest.Delete(`comments/${idComment}`);
         return res.data;
     } catch (error) {
-        console.log('lỡi');
+        console.log('error');
     }
 };
 export const editComment = async ({ id, comment }) => {
@@ -191,30 +224,6 @@ export const editComment = async ({ id, comment }) => {
         });
         return res.data;
     } catch (error) {
-        console.log('lỡi');
-    }
-};
-export const postVideo = async (formData) => {
-    try {
-        const res = await httpRequest.post('videos', formData);
-        return res.data;
-    } catch (error) {
-        console.log(error);
-    }
-};
-export const createVideo = async (formData) => {
-    try {
-        const res = await httpRequest.post('videos', formData);
-        return res.data;
-    } catch (error) {
-        console.log(error);
-    }
-};
-export const deleteVideo = async ({ id }) => {
-    try {
-        const res = await httpRequest.Delete(`videos/${id}`);
-        return res.data;
-    } catch (error) {
-        console.log(error);
+        console.log('error');
     }
 };

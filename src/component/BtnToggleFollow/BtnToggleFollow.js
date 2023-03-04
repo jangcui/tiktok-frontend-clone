@@ -6,11 +6,13 @@ import styles from './BtnToggleFollow.module.scss';
 import * as Services from '~/Services/Services';
 import UserContext from '../Contexts/UserContext/UserContext';
 import useModalAuthContext from '../Contexts/useModalAuthContext';
+import ConFirmContext from '../Contexts/ConFirmContext';
 const cx = classNames.bind(styles);
 
 function BtnToggleFollow({ dataUser, className }) {
     const user = UserContext();
     const { setIsModalAuth } = useModalAuthContext();
+    const { handleConfirm } = ConFirmContext();
 
     const [isFollow, setIsFollow] = useState(dataUser.is_followed ? true : false);
 
@@ -48,7 +50,15 @@ function BtnToggleFollow({ dataUser, className }) {
         <div className={classes}>
             {isFollow ? (
                 <Tippy offset={[0, 15]} placement="left" content="Un follow" allowHTML=" false" delay={[500, 200]}>
-                    <span onClick={handleUnFollow}>
+                    <span
+                        onClick={() =>
+                            handleConfirm({
+                                title: 'Un follow user ?',
+                                status: 'Agree',
+                                onDelete: handleUnFollow,
+                            })
+                        }
+                    >
                         <Button text outline className={cx('btn-following')}>
                             <b> Following</b>
                         </Button>

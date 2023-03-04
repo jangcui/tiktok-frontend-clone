@@ -1,15 +1,16 @@
 .wrapper {
-    min-width: 350px;
-    margin: 0 auto;
-    z-index: 99199;
+    display: flex;
+    justify-content: center;
+}
+.content {
     position: fixed;
+    width: 40%;
+    z-index: 99199;
     top: -100px;
     transition: all 0.5s ease-in;
-    left: 40%;
-    opacity: 0;
+    opacity: 1;
 }
 .slide {
-    left: 40%;
     top: 10px;
     opacity: 1;
     transition: all 0.2s ease-in;

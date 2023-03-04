@@ -1,19 +1,13 @@
 import classNames from 'classnames/bind';
 import { useState } from 'react';
+import ConFirmContext from '~/component/Contexts/ConFirmContext';
+import ModalEdit from '~/component/modals/ModalEdit';
 import styles from './Live.module.scss';
 const cx = classNames.bind(styles);
 function Live() {
-    const [open, setOpen] = useState(false);
     return (
         <div className={cx('loading')}>
-            <button
-                onClick={() => {
-                    console.log(123);
-                    setOpen(!open);
-                }}
-            >
-                heheeh
-            </button>
+            <ModalEdit />
         </div>
     );
 }

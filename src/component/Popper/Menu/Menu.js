@@ -83,6 +83,8 @@ function Menu({
             placement={placement}
             render={renderResult}
             onHide={handleReset}
+            zIndex={9999}
+            popperOptions={{ strategy: 'fixed' }}
         >
             {children}
         </Tippy>

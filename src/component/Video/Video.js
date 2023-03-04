@@ -34,9 +34,9 @@ function Video(
     }));
 
     const [ViewRef, inView, entry] = useInView({
-        threshold: 0.5,
+        threshold: 0.4,
         trackVisibility: true,
-        delay: 200,
+        delay: 400,
     });
     useEffect(() => {
         if (videoRef.current) {

@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
 import styles from './IconVideo.module.scss';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import * as Services from '~/Services/Services';
 
 const cx = classNames.bind(styles);
@@ -21,6 +21,10 @@ function IconLikeVideo({ data, isLogin, openModal, children, className }) {
             openModal();
         }
     };
+    useEffect(() => {
+        setIsIsLike(data.is_liked);
+        setLikeCount(data.likes_count);
+    }, [data]);
     const postUnLikeVideo = () => {
         setIsIsLike(false);
         setLikeCount(likeCount - 1);

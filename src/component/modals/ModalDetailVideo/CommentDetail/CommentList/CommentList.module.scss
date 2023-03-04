@@ -4,6 +4,8 @@
     align-items: flex-start;
     margin-bottom: 16px;
     position: relative;
+    overflow: hidden;
+    padding: 12px 0;
 }
 .avatar {
     width: 40px;
@@ -25,10 +27,24 @@
     font-size: 18px;
     display: flex;
     height: 26px;
+    justify-content: space-between;
 
-    &:hover {
+    &:hover .name {
         cursor: pointer;
         text-decoration: underline;
+    }
+    .name {
+        display: block;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+        max-width: 160px;
+    }
+    .creator {
+        color: var(--primary);
+        flex: 1;
+        font-size: 14px;
+        margin-left: 12px;
     }
 }
 
@@ -39,9 +55,11 @@
     white-space: pre-line;
     word-break: break-word;
     margin-bottom: 2px;
+    color: #161823cf;
+    margin-top: 6px;
 }
 .sub-comment {
-    color: rgba(22, 24, 35, 0.5);
+    color: #16182380;
     font-size: 12px;
     line-height: 20px;
 
@@ -52,7 +70,7 @@
     }
 }
 .like-comment {
-    margin-left: 18px;
+    margin-left: 12px;
     padding-right: 2px;
     width: 24px;
     flex: 0 0 24px;

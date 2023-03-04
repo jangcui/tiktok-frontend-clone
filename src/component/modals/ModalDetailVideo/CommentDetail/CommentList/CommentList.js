@@ -8,9 +8,12 @@ import styles from './CommentList.module.scss';
 import * as Services from '~/Services/Services';
 import UserContext from '~/component/Contexts/UserContext';
 import { Link } from 'react-router-dom';
+import ConFirmContext from '~/component/Contexts/ConFirmContext';
+
 const cx = classNames.bind(styles);
 
 function CommentList({ data, onDeleteComment, setValueCmt, setIsEditComment, setIdComment }) {
+    const { handleConfirm } = ConFirmContext();
     const [likeCount, setLikeCount] = useState(data.likes_count);
     const [isLike, setIsLike] = useState(data.is_liked);
 
@@ -24,7 +27,6 @@ function CommentList({ data, onDeleteComment, setValueCmt, setIsEditComment, set
             console.log('like comment whose id is: ', data.id);
         });
     };
-
     useEffect(() => {
         if (user) {
             if (user.id === data.user.id) {
@@ -64,14 +66,20 @@ function CommentList({ data, onDeleteComment, setValueCmt, setIsEditComment, set
                 data={data.user}
                 style
             >
-                <Link to={`/@${data.user.nickname}`}>
-                    <Image src={data.user.avatar} className={cx('avatar')} />
-                </Link>
+                <span onClick={() => window.location.reload()}>
+                    <Link to={`/@${data.user.nickname}`}>
+                        <Image src={data.user.avatar} className={cx('avatar')} />
+                    </Link>
+                </span>
             </SubInfoAvatar>
             <div className={cx('main-comment')}>
-                <Link to={`/@${data.user.nickname}`}>
-                    <span className={cx('name-user')}>{data.user.first_name + ' ' + data.user.last_name} </span>
-                </Link>
+                <div className={cx('name-user')}>
+                    <Link to={`/@${data.user.nickname}`}>
+                        <span className={cx('name')}> {data.user.first_name + ' ' + data.user.last_name} </span>{' '}
+                    </Link>
+                    {isUser && <span className={cx('creator')}>.Creator</span>}
+                </div>
+
                 <p className={cx('comment-text')}>{data.comment}</p>
                 <span className={cx('sub-comment')}>
                     {data.updated_at}
@@ -85,15 +93,23 @@ function CommentList({ data, onDeleteComment, setValueCmt, setIsEditComment, set
                         <span className={cx('arrow')}>
                             <ArrowIcon />
                         </span>
-                        <p>
-                            {isUser ? (
-                                <b onClick={handleDeleteComment}>Delete</b>
-                            ) : (
-                                <>
-                                    <FlagIcon /> <b>Report</b>
-                                </>
-                            )}
-                        </p>
+                        {isUser ? (
+                            // <b onClick={handleDeleteComment}>Delete</b>
+                            <p
+                                onClick={() =>
+                                    handleConfirm({
+                                        title: 'Delete comment ?',
+                                        onDelete: handleDeleteComment,
+                                    })
+                                }
+                            >
+                                <b>Delete</b>
+                            </p>
+                        ) : (
+                            <p>
+                                <FlagIcon /> <b>Report</b>
+                            </p>
+                        )}
                     </span>
                 </div>
                 <span className={cx('btn-like')}>

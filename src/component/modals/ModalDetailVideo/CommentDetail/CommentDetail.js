@@ -29,6 +29,7 @@ import CommentList from './CommentList';
 import PostComment from './PostComment';
 import NotifyContext from '~/component/Contexts/NotifyContext';
 import { Link } from 'react-router-dom';
+import ConFirmContext from '~/component/Contexts/ConFirmContext';
 const cx = classNames.bind(styles);
 
 const MENU_ITEMS = [
@@ -56,6 +57,7 @@ const MENU_ITEMS = [
 function CommentDetail({ data }) {
     const user = UserContext();
     const { setAlert } = NotifyContext();
+    const { handleConfirm } = ConFirmContext();
 
     const { setIsModalAuth } = useModalAuthContext();
     const [valueCmt, setValueCmt] = useState('');
@@ -78,7 +80,7 @@ function CommentDetail({ data }) {
         Services.deleteVideo({ id: data.id }).then(() => {
             setAlert('Deleted video', 1000);
             setTimeout(() => {
-                window.location.reload();
+                window.location.pathname = `@${user.nickname}`;
             }, 1000);
         });
     };
@@ -113,12 +115,14 @@ function CommentDetail({ data }) {
             handleEditComment(data);
         });
     };
+
     const handlePostCmt = () => {
         Services.postCreateComment(data.id, valueCmt).then((value) => {
             setValueCmt('');
             handleAddComment(value);
         });
     };
+
     return (
         <div className={cx('wrap-comment')}>
             <div className={cx('user')}>
@@ -146,7 +150,16 @@ function CommentDetail({ data }) {
                                 <span className={cx('arrow')}>
                                     <ArrowIcon />
                                 </span>
-                                <p onClick={handleDeleteVideo}>Delete</p>
+                                <p
+                                    onClick={() =>
+                                        handleConfirm({
+                                            title: 'Delete this video ?',
+                                            onDelete: handleDeleteVideo,
+                                        })
+                                    }
+                                >
+                                    Delete
+                                </p>
                             </span>
                         </div>
                     </div>
@@ -181,7 +194,7 @@ function CommentDetail({ data }) {
                         <strong>{data.comments_count}</strong>
                     </div>
                     <div className={cx('btn-share')}>
-                        {MENU_ITEMS.map((item, index) => (
+                        {MENU_ITEMS?.map((item, index) => (
                             <span title={item.title} key={index}>
                                 {item.icon}
                             </span>
@@ -205,39 +218,47 @@ function CommentDetail({ data }) {
                             <SkeletonLoader />
                         ) : (
                             <>
-                                {dataComment.map((data, index) => (
-                                    <CommentList
-                                        data={data}
-                                        key={index}
-                                        setValueCmt={setValueCmt}
-                                        setIsEditComment={() => {
-                                            setIndexCmt(index);
-                                            setIsEditComment(true);
-                                        }}
-                                        setIdComment={setIdComment}
-                                        onDeleteComment={() => {
-                                            handleDeleteComment(index);
-                                        }}
-                                    />
-                                ))}
+                                {data.allows.indexOf('comment') !== -1 &&
+                                    dataComment.map((data, index) => (
+                                        <CommentList
+                                            data={data}
+                                            key={index}
+                                            setValueCmt={setValueCmt}
+                                            setIsEditComment={() => {
+                                                setIndexCmt(index);
+                                                setIsEditComment(true);
+                                            }}
+                                            setIdComment={setIdComment}
+                                            onDeleteComment={() => {
+                                                handleDeleteComment(index);
+                                                setIsEditComment(false);
+                                            }}
+                                        />
+                                    ))}
                             </>
                         )}
                     </>
                 ) : (
-                    <p className={cx('loading')}>Please Login to see comments</p>
+                    <p>Please Login to see comments</p>
                 )}
             </div>
             <div className={cx('post-comment')}>
                 <div className={cx('container')}>
                     {user ? (
-                        <PostComment
-                            onPostComment={handlePostCmt}
-                            onPatchComment={handlePatchCmt}
-                            valueCmt={valueCmt}
-                            setValueCmt={setValueCmt}
-                            isEditComment={isEditComment}
-                            setIsEditComment={setIsEditComment}
-                        />
+                        <>
+                            {data.allows.indexOf('comment') !== -1 ? (
+                                <PostComment
+                                    onPostComment={handlePostCmt}
+                                    onPatchComment={handlePatchCmt}
+                                    valueCmt={valueCmt}
+                                    setValueCmt={setValueCmt}
+                                    isEditComment={isEditComment}
+                                    setIsEditComment={setIsEditComment}
+                                />
+                            ) : (
+                                <p className={cx('login')}>Comments have been turned off</p>
+                            )}
+                        </>
                     ) : (
                         <span className={cx('btn-login')} onClick={() => setIsModalAuth(true)}>
                             <p>Please log in to comment</p>

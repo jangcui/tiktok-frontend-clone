@@ -7,9 +7,11 @@ function PopUpNotify() {
     const { title, isAlert } = NotifyContext();
 
     return (
-        <div className={cx('wrapper', isAlert && 'slide')}>
-            <div className={cx('container')}>
-                <h3>{title}</h3>
+        <div className={cx('wrapper')}>
+            <div className={cx('content', isAlert && 'slide')}>
+                <div className={cx('container')}>
+                    <h3>{title}</h3>
+                </div>
             </div>
         </div>
     );

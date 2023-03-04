@@ -1,5 +1,5 @@
 :root {
-    --animation-duration: 0.8s;
+    --animation-duration: 0.7s;
     --circle-diameter: 20px;
     --circle-scale-percent: 0.4;
 }
@@ -7,11 +7,12 @@
 .app {
     width: 100%;
     overflow: hidden;
-    z-index: 999;
+    z-index: 99;
+    display: flex;
+    justify-content: center;
 }
 .loader {
     position: absolute;
-    left: 50%;
     height: 30px;
 }
 

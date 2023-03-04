@@ -11,10 +11,10 @@ import BtnToggleFollow from '../BtnToggleFollow';
 import UserContext from '../Contexts/UserContext';
 import { CheckIcon } from '../Icons';
 import Image from '../Image';
-import ModalDetailVideo from '../ModalDetailVideo/ModalDetailVideo';
 
 import Video from '../Video';
 import styles from './ContainerVideoList.module.scss';
+import ModalDetailVideo from '../modals/ModalDetailVideo';
 
 const cx = classNames.bind(styles);
 
@@ -34,7 +34,7 @@ function ContainerVideoList({ dataList }) {
 
     useEffect(() => {
         if (myRef.current) {
-            myRef.current.scrollIntoView({ block: 'center' });
+            myRef.current.scrollIntoView({ block: 'center', behavior: 'smooth' });
         }
     }, [index]);
 
@@ -53,8 +53,8 @@ function ContainerVideoList({ dataList }) {
                 index={index}
                 onClose={() => setOpenVideo(false)}
             />
-            {dataList.map((data, i) => (
-                <div className={cx('container')} key={i} ref={i === index ? myRef : null}>
+            {dataList?.map((data, i) => (
+                <div className={cx('container')} key={i}>
                     <div className={cx('wrap-avatar')}>
                         <SubInfoAvatar delay={[800, 500]} data={data.user} offset={[-20, 0]} style>
                             <Link to={`/@${data.user.nickname}`}>
@@ -62,7 +62,7 @@ function ContainerVideoList({ dataList }) {
                             </Link>
                         </SubInfoAvatar>
                     </div>
-                    <div className={cx('content')}>
+                    <div className={cx('content')} ref={i === index ? myRef : null}>
                         <div className={cx('nickname')}>
                             <Link to={`/@${data.user.nickname}`}>
                                 <h3>
@@ -73,7 +73,7 @@ function ContainerVideoList({ dataList }) {
                             </Link>
                         </div>
                         <div className={cx('status')}>
-                            <span onClick={(e) => e.target.scrollIntoView()}>
+                            <span>
                                 {data.description}
                                 <strong> {data.user.bio}</strong>
                             </span>

@@ -255,6 +255,13 @@
             display: flex;
             flex-direction: row;
             align-items: flex-end;
+
+            .login {
+                font-size: large;
+                font-weight: 600;
+                margin-bottom: 6px;
+                color: #161823bf;
+            }
         }
     }
 }

@@ -3,10 +3,15 @@ import className from 'classnames/bind';
 import { Link } from 'react-router-dom';
 import {
     faCircleQuestion,
+    faCoins,
     faEarthAsia,
     faEllipsisVertical,
+    faGear,
     faKeyboard,
     faPlus,
+    faSignIn,
+    faSignOut,
+    faUser,
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Tippy from '@tippyjs/react';
@@ -55,23 +60,23 @@ const MENU_ITEMS = [
 ];
 const userMenu = [
     {
-        icon: <FontAwesomeIcon icon={faCircleQuestion} />,
+        icon: <FontAwesomeIcon icon={faUser} />,
         title: 'View profile',
         to: '/@profile',
     },
     {
-        icon: <FontAwesomeIcon icon={faCircleQuestion} />,
+        icon: <FontAwesomeIcon icon={faCoins} />,
         title: 'Get Coins',
         to: '/coin',
     },
     {
-        icon: <FontAwesomeIcon icon={faCircleQuestion} />,
+        icon: <FontAwesomeIcon icon={faGear} />,
         title: 'Setting',
         to: '/setting',
     },
     ...MENU_ITEMS,
     {
-        icon: <FontAwesomeIcon icon={faCircleQuestion} />,
+        icon: <FontAwesomeIcon icon={faSignOut} />,
         title: 'Log out',
         to: '/logout',
         separate: true,
@@ -147,7 +152,9 @@ function Header({ small }) {
                             </>
                         ) : (
                             <Button primary onClick={() => setIsModalAuth(true)}>
-                                <b> Log in</b>
+                                <b>
+                                    <FontAwesomeIcon icon={faSignIn} /> Log in
+                                </b>
                             </Button>
                         )}
                     </>

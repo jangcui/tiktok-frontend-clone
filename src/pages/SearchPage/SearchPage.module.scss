@@ -1,8 +1,9 @@
-@import '/src/ResponsiveStyle/responsiveStyle';
+@use '/src/ResponsiveStyle' as *;
 
 .wrapper {
     @include styleLayout;
     min-width: calc(100% - 360px);
+
     @include breakpoint(medium) {
         min-width: calc(100% - 90px);
     }

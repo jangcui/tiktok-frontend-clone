@@ -14,8 +14,9 @@ const portal = document.getElementById('modal-detail-video');
 
 function ModalDetailVideo({ dataVideo, dataList, isOpen, onClose, index, setIndex }) {
     const [data, setData] = useState(dataVideo);
-    const location = useLocation();
-    const pathName = location.pathname;
+    const [lengthData, setLengthData] = useState();
+    const pathName = useLocation().pathname;
+
     useEffect(() => {
         if (isOpen && data) {
             window.history.pushState({}, '', `/video/${data.uuid}`);
@@ -24,25 +25,62 @@ function ModalDetailVideo({ dataVideo, dataList, isOpen, onClose, index, setInde
             document.body.classList.remove('hidden1');
         }
     }, [isOpen, data, pathName]);
+
+    useEffect(() => {
+        if (dataList) {
+            setData(dataList[index]);
+            setLengthData(dataList.length - 1);
+        }
+    }, [dataList, index]);
+
+    useEffect(() => {
+        const handleKeyDown = (e) => {
+            const keyCode = e.keyCode;
+            switch (keyCode) {
+                // key esc
+                case 27:
+                    handleClose();
+                    break;
+                // Space & down arrow
+                case 32:
+                case 40:
+                    e.preventDefault();
+                    handleNext();
+                    break;
+                // up arrow
+                case 38:
+                    e.preventDefault();
+                    handlePrev();
+                    break;
+                default:
+                    break;
+            }
+        };
+
+        window.addEventListener('keydown', handleKeyDown);
+
+        return () => {
+            window.removeEventListener('keydown', handleKeyDown);
+        };
+    }, [index, lengthData]);
     const handleNext = () => {
-        setIndex((prev) => prev + 1);
+        if (index < lengthData) {
+            setIndex(index + 1);
+        }
     };
 
     const handlePrev = () => {
-        setIndex((prev) => prev - 1);
+        if (index > 0) {
+            setIndex(index - 1);
+        }
     };
     const handleClose = () => {
         window.history.pushState({}, '', pathName);
         onClose();
     };
-    useEffect(() => {
-        dataList && setData(dataList[index]);
-    }, [dataList, index]);
-
     if (!isOpen) {
         return null;
     }
-
     return ReactDom.createPortal(
         <div className={cx('wrapper')}>
             {data && (

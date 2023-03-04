@@ -4,21 +4,21 @@ import classNames from 'classnames/bind';
 import styles from './DefaultLayout.module.scss';
 import Header from '~/layouts/components/Header';
 import Sidebar from '../components/Sidebar';
-import Button from '~/component/Button';
 import { ScrollIcon } from '~/component/Icons';
+import Tippy from '@tippyjs/react';
 
 const cx = classNames.bind(styles);
 
 function DefaultLayout({ children }) {
     const btnRef = useRef();
     useEffect(() => {
-        window.scrollTo(0, 20);
+        window.scrollTo(0, 50);
     }, []);
     useEffect(() => {
         if (btnRef.current) {
             const onScroll = () => {
-                window.pageYOffset === 0
-                    ? (btnRef.current.style.bottom = '-32px')
+                window.pageYOffset <= 50
+                    ? (btnRef.current.style.bottom = '-50px')
                     : (btnRef.current.style.bottom = '10px');
             };
             window.removeEventListener('scroll', onScroll);
@@ -31,8 +31,8 @@ function DefaultLayout({ children }) {
 
     const handleScroll = () => {
         window.scrollTo({
-            top: 0,
-            left: 0,
+            top: 20,
+            left: 20,
             behavior: 'smooth',
         });
     };
@@ -48,13 +48,12 @@ function DefaultLayout({ children }) {
                 </div>
                 <div className={cx('content')}>{children}</div>
             </div>
-            <div className={cx('wrap-btn')} ref={btnRef} onClick={handleScroll}>
-                <Button small className={cx('download-btn')} href="/">
-                    Down app
-                </Button>
-                <button className={cx('scroll-btn')}>
-                    <ScrollIcon />
-                </button>
+            <div className={cx('wrap-btn')} ref={btnRef} onClick={handleScroll} delay={[500, 200]}>
+                <Tippy placement="top" content="Scroll top" allowHTML=" false">
+                    <button primary className={cx('scroll-btn')}>
+                        <ScrollIcon />
+                    </button>
+                </Tippy>
             </div>
         </div>
     );

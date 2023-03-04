@@ -17,7 +17,7 @@ function AccountPreview({ data }) {
                     <Image className={cx('avatar')} src={data.avatar} alt="kk" />
                     <div className={cx('info')}>
                         <p className={cx('nickname')}>
-                            <strong>{data.nickname}</strong>
+                            <span>{data.nickname}</span>
                             {data.tick && <CheckIcon className={cx('check')} CheckIcon />}
                         </p>
                         <p className={cx('name')}>{data.first_name + ' ' + data.last_name}</p>

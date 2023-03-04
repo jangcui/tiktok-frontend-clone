@@ -1,4 +1,5 @@
-@import '/src/ResponsiveStyle/responsiveStyle';
+@use '/src/ResponsiveStyle' as *;
+@import url('https://use.typekit.net/nko5fvg.css');
 @import 'normalize.css';
 
 :root {
@@ -6,9 +7,8 @@
     --text-color: #333;
     --black: #161823;
     --white: #fff;
-    --main-color: #00ffff21;
 
-    --font-family: 'ProximaNova', sans-serif;
+    --font-family: 'ProximaNova', Arial, Tahoma, PingFangSC, sans-serif;
     // DefaultLayout
     --default-layout-header-height: 60px;
     --default-layout-width: 1150px;
@@ -24,12 +24,35 @@
 html {
     font-size: 62.5%;
 }
+// Fonts emmbeded
+@font-face {
+    font-family: ProximaNova;
+    src: url('/asset/fonts/Proxima-Nova-Regular\ \(3\).woff2');
+    font-weight: 400;
+}
 
+@font-face {
+    font-family: ProximaNova;
+    src: url('/asset/fonts/sofiapro-bold.woff2');
+    font-weight: 600;
+}
+
+@font-face {
+    font-family: ProximaNova;
+    src: url('/asset/fonts/Proxima-Nova-Semibold\ \(1\).woff2');
+    font-weight: 500;
+}
+
+@font-face {
+    font-family: SofiaPro;
+    src: url('/asset/fonts/ProximaNova-Semibold\ \(1\).woff2');
+    font-weight: 700;
+}
 body {
     font-family: var(--font-family);
     font-size: 1.6rem;
     line-height: 1.5;
-    color: var(--text-color);
+    color: var(--black);
     text-rendering: optimizeSpeed;
     overflow-y: overlay;
 }
@@ -60,8 +83,9 @@ html *::-webkit-scrollbar-track {
 }
 
 button,
+textarea,
 input,
-[tabindex] {
+[tabIndex] {
     border: none;
     outline: none;
 }
@@ -80,7 +104,6 @@ body {
         font-weight: 500;
         font-size: 1.6rem;
         line-height: 2.2rem;
-        z-index: 999;
     }
     .tippy-arrow {
         color: rgba(84, 84, 84, 0.92);

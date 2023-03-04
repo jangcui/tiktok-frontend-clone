@@ -1,10 +1,8 @@
 import { useEffect, useState } from 'react';
-import Button from '../Button';
 import styles from './ModalAuth.module.scss';
 import classNames from 'classnames/bind';
 
 import FormSignUp, { FormLogin } from './AccountRegister';
-import useModalAuthContext from '../Contexts/useModalAuthContext';
 import {
     CloseIcon,
     BackIcon,
@@ -17,7 +15,11 @@ import {
     AppleIcon,
     QRIcon,
     LineIcon,
-} from '../Icons';
+} from '~/component/Icons';
+import Button from '~/component/Button';
+import useModalAuthContext from '~/component/Contexts/useModalAuthContext';
+import ModalWrapper from '../ModalWrapper';
+
 const cx = classNames.bind(styles);
 
 const MENU_SIGN_UP = [
@@ -126,6 +128,7 @@ const MENU_SIGN_IN = [
 
 function ModalAuth() {
     const { isModalAuth, setIsModalAuth } = useModalAuthContext();
+
     const [items, setItems] = useState(MENU_SIGN_UP);
     const [isMenuItems, setIsMenuItems] = useState(false);
 
@@ -133,13 +136,6 @@ function ModalAuth() {
         isMenuItems ? setItems(MENU_SIGN_IN) : setItems(MENU_SIGN_UP);
     }, [isMenuItems]);
 
-    useEffect(() => {
-        if (isModalAuth) {
-            document.body.classList.add('hidden');
-        } else {
-            document.body.classList.remove('hidden');
-        }
-    }, [isModalAuth]);
     const handleItems = (item) => {
         switch (item.type) {
             case 'account':
@@ -154,68 +150,59 @@ function ModalAuth() {
     const handleBack = () => {
         isMenuItems ? setItems(MENU_SIGN_IN) : setItems(MENU_SIGN_UP);
     };
-    if (!isModalAuth) {
-        return null;
-    }
+
     return (
         <>
-            {isModalAuth ? (
-                <div className={cx('wrapper')}>
-                    <div className={cx('container')}>
-                        <div className={cx('content')}>
-                            <div className={cx('header')}>
-                                {!isMenuItems ? <h1> Log in to TikTok</h1> : <h1> Sign up for TikTok</h1>}
-                                <span className={cx('icon-close')} onClick={() => setIsModalAuth(false)}>
-                                    <CloseIcon />
-                                </span>
-                                {items.length === 0 && (
-                                    <span className={cx('icon-back')} onClick={handleBack}>
-                                        <BackIcon />
-                                    </span>
-                                )}
-                            </div>
-                            <div className={cx('body')}>
-                                {items.length === 0 && isMenuItems && <FormSignUp />}
-                                {items.length === 0 && !isMenuItems && <FormLogin />}
-                                {items &&
-                                    items.map((item, index) => (
-                                        <div
-                                            key={index}
-                                            className={cx('wrap-action')}
-                                            onClick={() => handleItems(item)}
-                                        >
-                                            <Button normal disable={!item.possible} onClick={() => console.log(item)}>
-                                                <span className={cx('icon')}>{item.icon}</span>
-                                                <p>{item.title}</p>
-                                            </Button>
-                                            {item.more && (
-                                                <span className={cx('show-more')} onClick={() => setItems(item.data)}>
-                                                    {item.more}
-                                                </span>
-                                            )}
-                                        </div>
-                                    ))}
-                            </div>
-                        </div>
-                        {isMenuItems && (
-                            <div className={cx('policy-confirm')}>
-                                <p>
-                                    By continuing, you agree to TikTok’s <i>Terms of Service</i> and confirm that you
-                                    have read TikTok’s <i>Privacy Policy.</i>
-                                </p>
-                            </div>
-                        )}
-
-                        <div className={cx('footer')}>
-                            {!isMenuItems ? <p>Don’t have an account?</p> : <p>Already have an account?</p>}
-                            <span className={cx('nav')} onClick={handleNav}>
-                                {!isMenuItems ? 'Sign up' : 'Log in'}
+            <ModalWrapper isOpen={isModalAuth}>
+                <div className={cx('container')}>
+                    <div className={cx('header')}>
+                        {!isMenuItems ? <h1> Log in to TikTok</h1> : <h1> Sign up for TikTok</h1>}
+                        <span className={cx('icon-close')} onClick={() => setIsModalAuth(false)}>
+                            <CloseIcon />
+                        </span>
+                        {items.length === 0 && (
+                            <span className={cx('icon-back')} onClick={handleBack}>
+                                <BackIcon />
                             </span>
+                        )}
+                    </div>
+                    <div className={cx('content')}>
+                        <div className={cx('body')}>
+                            {items.length === 0 && isMenuItems && <FormSignUp />}
+                            {items.length === 0 && !isMenuItems && <FormLogin />}
+                            {items &&
+                                items.map((item, index) => (
+                                    <div key={index} className={cx('wrap-action')} onClick={() => handleItems(item)}>
+                                        <Button normal disable={!item.possible} onClick={() => console.log(item)}>
+                                            <span className={cx('icon')}>{item.icon}</span>
+                                            <p>{item.title}</p>
+                                        </Button>
+                                        {item.more && (
+                                            <span className={cx('show-more')} onClick={() => setItems(item.data)}>
+                                                {item.more}
+                                            </span>
+                                        )}
+                                    </div>
+                                ))}
                         </div>
                     </div>
-                    <div />
+                    {isMenuItems && (
+                        <div className={cx('policy-confirm')}>
+                            <p>
+                                By continuing, you agree to TikTok’s <i>Terms of Service</i> and confirm that you have
+                                read TikTok’s <i>Privacy Policy.</i>
+                            </p>
+                        </div>
+                    )}
+
+                    <div className={cx('footer')}>
+                        {!isMenuItems ? <p>Don’t have an account?</p> : <p>Already have an account?</p>}
+                        <span className={cx('nav')} onClick={handleNav}>
+                            {!isMenuItems ? 'Sign up' : 'Log in'}
+                        </span>
+                    </div>
                 </div>
-            ) : null}
+            </ModalWrapper>
         </>
     );
 }

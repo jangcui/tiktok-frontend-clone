@@ -82,6 +82,8 @@
         max-height: 500px;
 
         .video {
+            min-height: 358px;
+            min-width: 280px;
             object-fit: cover;
             max-width: 100%;
             border-radius: 6px;

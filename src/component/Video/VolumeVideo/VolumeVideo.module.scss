@@ -3,12 +3,12 @@
     position: relative;
     display: flex;
     flex-direction: column;
-    z-index: 9999;
+    z-index: 99;
 
     &:hover {
         .progress {
             opacity: 1;
-            transition: 0.2s;
+            transition: 0.1s;
         }
     }
 
@@ -43,7 +43,7 @@
     }
 
     .progress-bar {
-        transition: 0.2s;
+        transition: 0.1s all;
         width: 2px;
         max-height: 40px;
         background-color: #ffffff;

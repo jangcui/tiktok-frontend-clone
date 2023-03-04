@@ -1,7 +1,7 @@
 import classNames from 'classnames/bind';
 import BtnToggleFollow from '~/component/BtnToggleFollow';
 import Button from '~/component/Button';
-import { CheckIcon, DotsIcon, EditIcon, ShareIcon } from '~/component/Icons';
+import { CheckIcon, EditIcon } from '~/component/Icons';
 import Image from '~/component/Image';
 import styles from './Userinfo.module.scss';
 const cx = classNames.bind(styles);

@@ -6,11 +6,11 @@ import * as Services from '~/Services';
 
 import Video from '~/component/Video';
 import styles from './VideoPage.module.scss';
-import CommentDetail from '~/component/ModalDetailVideo/CommentDetail';
 import Header from '~/layouts/components/Header';
 import Sidebar from '~/layouts/components/Sidebar';
 import { PlayIcon, VideoIcon } from '~/component/Icons';
 import VolumeVideo from '~/component/Video/VolumeVideo';
+import CommentDetail from '~/component/modals/ModalDetailVideo/CommentDetail';
 const cx = classNames.bind(styles);
 function VideoPage() {
     const location = useLocation();

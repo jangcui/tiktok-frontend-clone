@@ -5,11 +5,14 @@ import { useRef, useState } from 'react';
 import Button from '~/component/Button';
 import { CloseIcon, SwitchIcon, TagIcon } from '~/component/Icons';
 import styles from './PostComment.module.scss';
+import ConFirmContext from '~/component/Contexts/ConFirmContext';
 
 const cx = classNames.bind(styles);
 
 function PostComment({ onPatchComment, onPostComment, valueCmt, setValueCmt, isEditComment, setIsEditComment }) {
     const [activeInput, setActiveInput] = useState(false);
+    const { handleConfirm } = ConFirmContext();
+
     const inputRef = useRef();
 
     const handleActiveInput = () => {
@@ -17,8 +20,8 @@ function PostComment({ onPatchComment, onPostComment, valueCmt, setValueCmt, isE
         inputRef.current.focus();
     };
     const handleBtnPost = () => {
-        setIsEditComment(false);
         setValueCmt('');
+        setIsEditComment(false);
         inputRef.current.focus();
     };
 
@@ -46,6 +49,7 @@ function PostComment({ onPatchComment, onPostComment, valueCmt, setValueCmt, isE
         inputRef.current.focus();
         onPostComment();
     };
+
     return (
         <>
             <div className={cx('wrap-input')}>
@@ -77,7 +81,18 @@ function PostComment({ onPatchComment, onPostComment, valueCmt, setValueCmt, isE
                             <SwitchIcon width={'20px'} height={'20px'} />
                         </span>
                     </Tippy>
-                    <Button outline disable={valueCmt === ''} className={cx('btn-patch')} onClick={handlePatchApi}>
+                    <Button
+                        outline
+                        disable={valueCmt === ''}
+                        className={cx('btn-patch')}
+                        onClick={() =>
+                            handleConfirm({
+                                title: 'This comment will be changed ?',
+                                status: 'Agree',
+                                onDelete: handlePatchApi,
+                            })
+                        }
+                    >
                         Patch
                     </Button>
                 </div>

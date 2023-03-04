@@ -85,7 +85,7 @@ function Search() {
                     <input
                         ref={idValue}
                         value={searchValue}
-                        placeholder="search accounts and videos..."
+                        placeholder="Search accounts and videos..."
                         spellCheck={false}
                         onChange={handleChange}
                         onFocus={() => setShowResult(true)}

@@ -5,7 +5,7 @@ import { useLocation } from 'react-router-dom';
 import UserContext from '~/component/Contexts/UserContext/UserContext';
 import { LockIcon, UserIcon } from '~/component/Icons';
 import Loading from '~/component/Loading';
-import ModalDetailVideo from '~/component/ModalDetailVideo';
+import ModalDetailVideo from '~/component/modals/ModalDetailVideo';
 import { useDebounce } from '~/hook';
 import Header from '~/layouts/components/Header';
 import Sidebar from '~/layouts/components/Sidebar';
@@ -18,17 +18,21 @@ const cx = classNames.bind(styles);
 
 function Profile() {
     const user = UserContext();
+
     const [isEditBtn, setIsEditBtn] = useState(false);
     const [activeBtn, setActiveBtn] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
-    const [dataVideo, setDataVideo] = useState({});
-    const [listVideo, setListVideo] = useState([]);
     const [isOpen, setIsOpen] = useState(false);
+
+    const [dataVideo, setDataVideo] = useState({});
     const [data, setData] = useState({});
+
+    const [listVideo, setListVideo] = useState([]);
+    const [likedVideo, setLikedVideo] = useState([]);
+
     const [index, setIndex] = useState(0);
 
-    const pathName = useLocation();
-    const nickName = pathName.pathname;
+    const nickName = useLocation().pathname;
     const dataUser = useDebounce(data, 800);
 
     useEffect(() => {
@@ -51,11 +55,27 @@ function Profile() {
         setIsLoading(true);
         Services.getAnUser(nickName).then((data) => {
             if (data) {
-                console.log(data);
                 setData(data);
             }
         });
     }, [nickName]);
+    useEffect(() => {
+        if (isEditBtn)
+            Services.getVideoLiked({ userId: user.id }).then((data) => {
+                if (data) {
+                    setLikedVideo(data);
+                }
+            });
+    }, [user, isEditBtn, nickName]);
+    const handleGetVideoLiked = () => {
+        setListVideo(likedVideo);
+    };
+    const handleGetVideoUser = () => {
+        if (dataUser) {
+            setIsLoading(false);
+            setListVideo(dataUser.videos);
+        }
+    };
     const handleClickVideo = (events, index) => {
         setDataVideo(events);
         setIsOpen(true);
@@ -82,30 +102,37 @@ function Profile() {
                         <Loading />
                     </div>
                 ) : (
-                    <>
-                        <div className={cx('content')}>
-                            <Userinfo dataUser={dataUser} isEditBtn={isEditBtn} />
-                            <div className={cx('wrap-videos')}>
-                                <div className={cx('btn-toggle')}>
-                                    <span
-                                        className={cx('btn-video', activeBtn && 'active-btn')}
-                                        onClick={() => setActiveBtn(false)}
-                                    >
-                                        Video
-                                    </span>
-                                    <span
-                                        className={cx('btn-liked', !activeBtn && 'active-btn')}
-                                        onClick={() => setActiveBtn(true)}
-                                    >
-                                        {!isEditBtn ? <LockIcon /> : <UserIcon />} Liked
-                                    </span>
-                                    <span className={cx('slider', activeBtn && 'active-slider')}></span>
-                                </div>
-                                {!activeBtn ? (
-                                    <VideosProfile data={listVideo} onClick={handleClickVideo} isEditBtn={isEditBtn} />
-                                ) : (
-                                    <div className={cx('private')}>
-                                        {!isEditBtn ? (
+                    <div className={cx('content')}>
+                        <Userinfo dataUser={dataUser} isEditBtn={isEditBtn} />
+                        <div className={cx('wrap-videos')}>
+                            <div className={cx('btn-toggle')}>
+                                <span
+                                    className={cx('btn-video', activeBtn && 'active-btn')}
+                                    onClick={() => {
+                                        handleGetVideoUser();
+                                        setActiveBtn(false);
+                                    }}
+                                >
+                                    Video
+                                </span>
+                                <span
+                                    className={cx('btn-liked', !activeBtn && 'active-btn')}
+                                    onClick={() => {
+                                        handleGetVideoLiked();
+
+                                        setActiveBtn(true);
+                                    }}
+                                >
+                                    {!isEditBtn ? <LockIcon /> : <UserIcon />} Liked
+                                </span>
+                                <span className={cx('slider', activeBtn && 'active-slider')}></span>
+                            </div>
+                            {!activeBtn ? (
+                                <VideosProfile data={listVideo} onClick={handleClickVideo} isEditBtn={isEditBtn} />
+                            ) : (
+                                <>
+                                    {!isEditBtn ? (
+                                        <div className={cx('private')}>
                                             <>
                                                 <LockIcon className={cx('icon')} />
                                                 <h2>This user's liked videos are private </h2>
@@ -117,18 +144,18 @@ function Profile() {
                                                     are currently hidden
                                                 </p>
                                             </>
-                                        ) : (
-                                            <>
-                                                <UserIcon className={cx('icon')} />
-                                                <h2>No liked videos yet </h2>
-                                                <p>Videos you liked will appear here</p>
-                                            </>
-                                        )}
-                                    </div>
-                                )}
-                            </div>
+                                        </div>
+                                    ) : (
+                                        <VideosProfile
+                                            data={listVideo}
+                                            onClick={handleClickVideo}
+                                            isEditBtn={!isEditBtn}
+                                        />
+                                    )}
+                                </>
+                            )}
                         </div>
-                    </>
+                    </div>
                 )}
             </div>
         </div>

@@ -2,8 +2,9 @@ import { Fragment } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { publicRouter } from './routes';
 import DefaultLayout from '~/layouts';
-import PopUpNotify from './component/PopUpNotify/PopUpNotify';
-import ModalAuth from './component/ModalAuth';
+import PopUpNotify from './component/PopUpNotify';
+import ModalAuth from './component/modals/ModalAuth';
+import ModalConfirm from './component/modals/ModalConfirm';
 
 function App() {
     return (
@@ -27,6 +28,7 @@ function App() {
                                 element={
                                     <>
                                         <PopUpNotify />
+                                        <ModalConfirm />
                                         <ModalAuth />
                                         <Layout>
                                             <Page />
