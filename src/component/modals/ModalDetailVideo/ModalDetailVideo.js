@@ -41,8 +41,7 @@ function ModalDetailVideo({ dataVideo, dataList, isOpen, onClose, index, setInde
                 case 27:
                     handleClose();
                     break;
-                // Space & down arrow
-                case 32:
+                //  down arrow
                 case 40:
                     e.preventDefault();
                     handleNext();

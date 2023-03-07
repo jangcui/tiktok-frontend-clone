@@ -18,7 +18,7 @@ function CommentList({ data, onDeleteComment, setValueCmt, setIsEditComment, set
     const [isLike, setIsLike] = useState(data.is_liked);
 
     const [isUser, setIsUser] = useState(false);
-    const user = UserContext();
+    const { currentUser } = UserContext();
 
     const handleLikeComment = () => {
         setLikeCount(likeCount + 1);
@@ -28,14 +28,14 @@ function CommentList({ data, onDeleteComment, setValueCmt, setIsEditComment, set
         });
     };
     useEffect(() => {
-        if (user) {
-            if (user.id === data.user.id) {
+        if (currentUser) {
+            if (currentUser.id === data.user.id) {
                 setIsUser(true);
             } else {
                 setIsUser(false);
             }
         }
-    }, [user, data]);
+    }, [currentUser, data]);
 
     const handleUnLikeComment = () => {
         setLikeCount(likeCount - 1);
@@ -73,7 +73,7 @@ function CommentList({ data, onDeleteComment, setValueCmt, setIsEditComment, set
                 </span>
             </SubInfoAvatar>
             <div className={cx('main-comment')}>
-                <div className={cx('name-user')}>
+                <div className={cx('name-user')} onClick={() => window.location.reload()}>
                     <Link to={`/@${data.user.nickname}`}>
                         <span className={cx('name')}> {data.user.first_name + ' ' + data.user.last_name} </span>{' '}
                     </Link>
@@ -99,7 +99,7 @@ function CommentList({ data, onDeleteComment, setValueCmt, setIsEditComment, set
                                 onClick={() =>
                                     handleConfirm({
                                         title: 'Delete comment ?',
-                                        onDelete: handleDeleteComment,
+                                        onConfirm: handleDeleteComment,
                                     })
                                 }
                             >

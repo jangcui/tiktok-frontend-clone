@@ -12,7 +12,7 @@ const cx = classNames.bind(styles);
 
 const RANDOM = () => Math.floor(Math.random() * 20 + 1);
 function SuggestedPage() {
-    const user = UserContext();
+    const { currentUser } = UserContext();
 
     const [page, setPage] = useState(RANDOM);
     const [dataUser, setDataUser] = useState([]);
@@ -25,14 +25,14 @@ function SuggestedPage() {
         if (page > 20) {
             return setPage(RANDOM);
         }
-        if (!user) {
+        if (!currentUser) {
             Services.getSuggested({ page: page, perPage: 12 }).then((data) => {
                 setDataUser((preUser) => {
                     return [...preUser, ...data];
                 });
             });
         }
-    }, [page, user]);
+    }, [page, currentUser]);
     return (
         <>
             <InfiniteScroll

@@ -68,7 +68,7 @@ function PostComment({ onPatchComment, onPostComment, valueCmt, setValueCmt, isE
                         name="comment"
                         ref={inputRef}
                         type="text"
-                        value={valueCmt}
+                        defaultValue={valueCmt}
                         placeholder="Create comment..."
                         onChange={(e) => handleValueInput(e.target.value)}
                     />
@@ -89,7 +89,7 @@ function PostComment({ onPatchComment, onPostComment, valueCmt, setValueCmt, isE
                             handleConfirm({
                                 title: 'This comment will be changed ?',
                                 status: 'Agree',
-                                onDelete: handlePatchApi,
+                                onConfirm: handlePatchApi,
                             })
                         }
                     >

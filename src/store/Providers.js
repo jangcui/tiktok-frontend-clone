@@ -1,22 +1,28 @@
 import PropTypes from 'prop-types';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { ContextUser, ContextVolume, AlertContext, ModalAuthContext, ConfirmContext } from './Contexts';
 
 const user_login = JSON.parse(localStorage.getItem('USER_LOGIN')) || null;
 function Providers({ children }) {
-    const [volume, setVolume] = useState(localStorage.getItem('VOLUME') || 0);
     const [isModalAuth, setIsModalAuth] = useState(false);
+    const [volume, setVolume] = useState(localStorage.getItem('VOLUME') || 0);
+    const [currentUser, setCurrentUser] = useState(user_login);
     const [notify, setNotify] = useState({
         title: '',
         isOpen: false,
     });
+
     const [confirm, setConfirm] = useState({
         title: '',
         isOpen: false,
         status: 'Delete',
-        onDelete: () => {},
+        onConfirm: () => {},
     });
-
+    useEffect(() => {
+        if (!user_login) {
+            setIsModalAuth(true);
+        }
+    }, []);
     const setAlert = (text, time) => {
         notify.title = text;
         notify.isOpen = true;
@@ -35,12 +41,12 @@ function Providers({ children }) {
         setConfirm({ ...confirm });
     };
 
-    const handleConfirm = ({ title, status, onDelete }) => {
+    const handleConfirm = ({ title, status, onConfirm }) => {
         confirm.title = title;
         confirm.status = status;
         confirm.isOpen = true;
-        confirm.onDelete = () => {
-            onDelete();
+        confirm.onConfirm = () => {
+            onConfirm();
             handleClose();
         };
         setConfirm({ ...confirm });
@@ -59,7 +65,7 @@ function Providers({ children }) {
                     value={{
                         title: confirm.title,
                         isConfirm: confirm.isOpen,
-                        onDelete: confirm.onDelete,
+                        onConfirm: confirm.onConfirm,
                         status: confirm.status,
                         onClose: handleClose,
                         handleConfirm,
@@ -71,7 +77,7 @@ function Providers({ children }) {
                             setIsModalAuth,
                         }}
                     >
-                        <ContextUser.Provider value={user_login}>{children}</ContextUser.Provider>
+                        <ContextUser.Provider value={{ currentUser, setCurrentUser }}>{children}</ContextUser.Provider>
                     </ModalAuthContext.Provider>
                 </ConfirmContext.Provider>
             </AlertContext.Provider>

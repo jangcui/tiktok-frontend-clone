@@ -76,7 +76,7 @@ function UploadPage() {
     const handlePostVideo = () => {
         setIsLoading(true);
         handleFormData();
-        Services.postVideo(formData).then((data) => {
+        Services.postVideo({ formData: formData }).then((data) => {
             console.log(data);
             if (data) {
                 setNameMusic('');

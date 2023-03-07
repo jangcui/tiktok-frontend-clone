@@ -55,7 +55,7 @@ const MENU_ITEMS = [
     },
 ];
 function CommentDetail({ data }) {
-    const user = UserContext();
+    const { currentUser } = UserContext();
     const { setAlert } = NotifyContext();
     const { handleConfirm } = ConFirmContext();
 
@@ -80,7 +80,7 @@ function CommentDetail({ data }) {
         Services.deleteVideo({ id: data.id }).then(() => {
             setAlert('Deleted video', 1000);
             setTimeout(() => {
-                window.location.pathname = `@${user.nickname}`;
+                window.location.pathname = `@${currentUser.nickname}`;
             }, 1000);
         });
     };
@@ -97,7 +97,7 @@ function CommentDetail({ data }) {
     };
 
     useEffect(() => {
-        if (user && data) {
+        if (currentUser && data) {
             setIsLoading(true);
             Services.getCommentsList(data.id).then((value) => {
                 if (value) {
@@ -106,7 +106,7 @@ function CommentDetail({ data }) {
                 }
             });
         }
-    }, [data, user]);
+    }, [data, currentUser]);
 
     const handlePatchCmt = () => {
         Services.editComment({ id: idComment, comment: valueCmt }).then((data) => {
@@ -142,7 +142,7 @@ function CommentDetail({ data }) {
                     <span>{data.user.first_name + ' ' + data.user.last_name}</span>
                     <p>{data.user.nickname}</p>
                 </div>
-                {user && user.id === data.user.id ? (
+                {currentUser && currentUser.id === data.user.id ? (
                     <div className={cx('btn-delete')}>
                         <DotsIcon width={'34px'} height={'34px'} />
                         <div className={cx('dot-icon')}>
@@ -154,7 +154,7 @@ function CommentDetail({ data }) {
                                     onClick={() =>
                                         handleConfirm({
                                             title: 'Delete this video ?',
-                                            onDelete: handleDeleteVideo,
+                                            onConfirm: handleDeleteVideo,
                                         })
                                     }
                                 >
@@ -183,7 +183,7 @@ function CommentDetail({ data }) {
                         <IconLikeVideo
                             className={cx('like-icon')}
                             data={data}
-                            isLogin={!user ? false : true}
+                            isLogin={!currentUser ? false : true}
                             openModal={() => setIsModalAuth(true)}
                         >
                             <LikeIconFull width={'18px'} height={'18px'} />
@@ -194,7 +194,7 @@ function CommentDetail({ data }) {
                         <strong>{data.comments_count}</strong>
                     </div>
                     <div className={cx('btn-share')}>
-                        {MENU_ITEMS?.map((item, index) => (
+                        {MENU_ITEMS.map((item, index) => (
                             <span title={item.title} key={index}>
                                 {item.icon}
                             </span>
@@ -212,7 +212,7 @@ function CommentDetail({ data }) {
                 </div>
             </div>
             <div className={cx('view-comment')}>
-                {user ? (
+                {currentUser ? (
                     <>
                         {isLoading ? (
                             <SkeletonLoader />
@@ -244,7 +244,7 @@ function CommentDetail({ data }) {
             </div>
             <div className={cx('post-comment')}>
                 <div className={cx('container')}>
-                    {user ? (
+                    {currentUser ? (
                         <>
                             {data.allows.indexOf('comment') !== -1 ? (
                                 <PostComment

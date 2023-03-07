@@ -16,6 +16,7 @@ const cx = classNames.bind(styles);
 const REGEX_USER = /^[a-zA-Z](_(?!(\.|_))|\.(?!(_|\.))|[a-zA-Z0-9]){4,18}[a-zA-Z0-9]$/;
 
 function FormLogin() {
+    const { setAlert } = NotifyContext();
     const [isLoading, setIsLoading] = useState(false);
     const [isLogin, setIsLogin] = useState(false);
 
@@ -28,9 +29,7 @@ function FormLogin() {
     const [errPwd, setErrPwd] = useState(false);
 
     const [hiddenPwd, setHiddenPwd] = useState(true);
-    const [isOke, setIsOke] = useState(false);
-
-    const { setAlert } = NotifyContext();
+    const [isConfirm, setIsConfirm] = useState(false);
 
     const userNameRef = useRef();
     const debounceIsLogin = useDebounce(isLogin, 3000);
@@ -43,12 +42,12 @@ function FormLogin() {
     }, []);
 
     useEffect(() => {
-        if (!errPwd || !errUserName || !errLogin) {
-            setIsOke(false);
+        if (errPwd || errUserName || errLogin) {
+            setIsConfirm(true);
         } else {
-            setIsOke(true);
+            setIsConfirm(false);
         }
-    }, [errPwd, errUserName, isOke, errLogin]);
+    }, [errPwd, errUserName, isConfirm, errLogin]);
 
     const handleUserName = (e) => {
         let value = e.target.value;
@@ -71,16 +70,17 @@ function FormLogin() {
         }
     };
     const handleSubmit = (e) => {
-        setIsLoading(true);
-        setIsOke(false);
         e.preventDefault();
+        setIsLoading(true);
+        setIsConfirm(false);
         Services.login({ email: userName, password: pwd }).then((data) => {
             if (data) {
+                console.log(data);
                 localStorage.setItem('USER_LOGIN', JSON.stringify(data.data));
                 localStorage.setItem('TOKEN', data.meta.token);
                 setAlert('Logged in successfully, please wait.....', 2000);
                 setUserName('');
-                setIsOke(false);
+                setIsConfirm(false);
                 setPwd('');
                 setIsLogin(true);
             } else {
@@ -95,13 +95,11 @@ function FormLogin() {
     return (
         <div>
             {isLoading && (
-                <>
-                    <div className={cx('loading')}>
-                        <Loading />
-                        <h2> Logged in.....</h2>
-                    </div>
-                    <div className={cx('overlay')}> </div>
-                </>
+                <div className={cx('loading')}>
+                    <Loading />
+                    <h2>Just a second...</h2>
+                    <div className={cx('overlay')} />
+                </div>
             )}
 
             <div className={cx('container')}>
@@ -154,8 +152,8 @@ function FormLogin() {
                         )}
                         {errLogin && <small>Invalid user name or password, please try again</small>}
                     </div>
-                    <Button primary large disable={isOke} className={cx('btn')}>
-                        <p>Sign up</p>
+                    <Button primary large disable={isConfirm} className={cx('btn')}>
+                        <p>Login</p>
                     </Button>
                 </form>
             </div>

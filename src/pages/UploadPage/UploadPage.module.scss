@@ -123,7 +123,7 @@
     h4 {
         font-size: 18px;
         font-weight: 400;
-        color: #16182380;
+        color: var(--text-color-dark);
     }
 
     @include breakpoint(phone) {
@@ -286,7 +286,7 @@
                 display: flex;
             }
             .copyright {
-                color: #161823bf;
+                color: var(--text-color-grey);
                 font-size: 12px;
                 margin-top: 10px;
 

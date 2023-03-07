@@ -50,7 +50,7 @@ function DefaultLayout({ children }) {
             </div>
             <div className={cx('wrap-btn')} ref={btnRef} onClick={handleScroll} delay={[500, 200]}>
                 <Tippy placement="top" content="Scroll top" allowHTML=" false">
-                    <button primary className={cx('scroll-btn')}>
+                    <button className={cx('scroll-btn')}>
                         <ScrollIcon />
                     </button>
                 </Tippy>

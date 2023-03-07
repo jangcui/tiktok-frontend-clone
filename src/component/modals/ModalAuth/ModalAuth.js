@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react';
 import styles from './ModalAuth.module.scss';
 import classNames from 'classnames/bind';
 
-import FormSignUp, { FormLogin } from './AccountRegister';
 import {
     CloseIcon,
     BackIcon,
@@ -19,6 +18,8 @@ import {
 import Button from '~/component/Button';
 import useModalAuthContext from '~/component/Contexts/useModalAuthContext';
 import ModalWrapper from '../ModalWrapper';
+import FormSignUp from './AccountRegister/FormSignUp';
+import { FormLogin } from './AccountRegister';
 
 const cx = classNames.bind(styles);
 
@@ -158,7 +159,7 @@ function ModalAuth() {
                     <div className={cx('header')}>
                         {!isMenuItems ? <h1> Log in to TikTok</h1> : <h1> Sign up for TikTok</h1>}
                         <span className={cx('icon-close')} onClick={() => setIsModalAuth(false)}>
-                            <CloseIcon />
+                            <CloseIcon width={'28px'} height={'28px'} />
                         </span>
                         {items.length === 0 && (
                             <span className={cx('icon-back')} onClick={handleBack}>

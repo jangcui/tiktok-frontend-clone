@@ -14,14 +14,14 @@ function Uploader({ fileVideo, setFileVideo }) {
 
     const previewFile = (e) => {
         setIsLoading(false);
-        const selectedFile = e.target.files[0];
+        const fileVideo = e.target.files[0];
         const reader = new FileReader();
-        if (selectedFile) {
-            setFileVideo(selectedFile);
-            reader.readAsDataURL(selectedFile);
+        if (fileVideo) {
+            setFileVideo(fileVideo);
+            reader.readAsDataURL(fileVideo);
         }
         reader.onloadend = (readerEvent) => {
-            if (selectedFile.type.includes('video')) {
+            if (fileVideo.type.includes('video')) {
                 setIsLoading(true);
                 setConvertFile(readerEvent.target.result);
             }
@@ -33,7 +33,7 @@ function Uploader({ fileVideo, setFileVideo }) {
     return (
         <>
             <div className={cx('container')}>
-                <input type="file" hidden onInput={previewFile} ref={fileRef} />
+                <input ref={fileRef} type="file" hidden onInput={previewFile} />
 
                 {convertFile ? (
                     <div className={cx('wrap-video')}>

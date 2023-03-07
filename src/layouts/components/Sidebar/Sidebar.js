@@ -25,7 +25,7 @@ const cx = classNames.bind(styles);
 
 const RANDOM = () => Math.floor(Math.random() * 10 + 1);
 function Sidebar({ small = false }) {
-    const user = UserContext();
+    const { currentUser } = UserContext();
     const { setIsModalAuth } = useModalAuthContext();
     const [page, setPage] = useState(RANDOM);
     const [dataUser, setDataUser] = useState([]);
@@ -43,13 +43,13 @@ function Sidebar({ small = false }) {
     }, [page]);
 
     useEffect(() => {
-        user &&
+        currentUser &&
             Services.getFollowList(1).then((data) => {
                 if (data) {
                     setDataFollow((preUser) => [...preUser, ...data]);
                 }
             });
-    }, [user]);
+    }, [currentUser]);
 
     return (
         <div className={cx('wrapper', small && 'small')}>
@@ -67,7 +67,7 @@ function Sidebar({ small = false }) {
                     activeIcon={<UserGroupActiveIcon />}
                 />
                 <MenuItems title="LIVE" to={config.routes.live} icon={<LiveIcon />} activeIcon={<LiveActiveIcon />} />
-                {!!!user && (
+                {!!!currentUser && (
                     <div className={cx('btn-login')}>
                         <p className={cx('btn-title')}>Log in to follow creators, like videos, and view comments.</p>
                         <Button large outline onClick={() => setIsModalAuth(true)}>
@@ -77,7 +77,7 @@ function Sidebar({ small = false }) {
                 )}
                 <SuggestAccounts label="Suggested accounts" data={dataUser} />
 
-                {user && <SuggestAccounts label="Following accounts" data={dataFollow} />}
+                {currentUser && <SuggestAccounts label="Following accounts" data={dataFollow} />}
                 <div className={cx('footer')}>
                     <DiscoverSidebar />
                     <FooterSidebar />

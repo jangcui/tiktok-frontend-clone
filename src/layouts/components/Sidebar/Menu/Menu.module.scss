@@ -1,4 +1,4 @@
-@import '/src/ResponsiveStyle/responsiveStyle';
+@use '/src/ResponsiveStyle' as *;
 
 .menu-item {
     display: flex;

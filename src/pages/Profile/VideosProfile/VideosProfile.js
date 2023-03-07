@@ -7,7 +7,7 @@ const cx = classNames.bind(styles);
 function VideosProfile({ data, onClick, isEditBtn }) {
     return (
         <>
-            {data.length > 0 ? (
+            {data?.length > 0 ? (
                 <div className={cx('wrapper')}>
                     {data.map((element, index) => (
                         <div className={cx('container')} key={index}>

@@ -17,7 +17,7 @@
         display: inline-block;
         margin-right: 14px;
         margin-top: 4px;
-        color: #16182380;
+        color: var(--text-color-dark);
         margin-bottom: 7px;
         cursor: pointer;
 
@@ -32,7 +32,7 @@
         line-height: 16px;
         margin-right: 6px;
         margin-top: 4px;
-        color: #16182380;
+        color: var(--text-color-dark);
         margin-bottom: 8px;
         cursor: pointer;
     }

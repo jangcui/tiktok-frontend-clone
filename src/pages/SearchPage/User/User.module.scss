@@ -44,7 +44,7 @@
     line-height: 25px;
 }
 .title {
-    color: #161823bf;
+    color: var(--text-color-grey);
     font-size: 14px;
     line-height: 20px;
     margin-top: 1px;
@@ -75,7 +75,7 @@
         justify-content: space-between;
         font-size: 16px;
         width: 100px;
-        color: #16182380;
+        color: var(--text-color-dark);
         cursor: pointer;
     }
 }

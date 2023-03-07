@@ -1,12 +1,13 @@
 @use '/src/ResponsiveStyle' as *;
-@import url('https://use.typekit.net/nko5fvg.css');
 @import 'normalize.css';
 
 :root {
     --primary: #fe2c55;
-    --text-color: #333;
+    --text-color: #333333;
     --black: #161823;
     --white: #fff;
+    --text-color-grey: #161823bf;
+    --text-color-dark: #16182380;
 
     --font-family: 'ProximaNova', Arial, Tahoma, PingFangSC, sans-serif;
     // DefaultLayout

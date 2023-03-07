@@ -3,9 +3,10 @@
 }
 
 .content {
-    height: 480px;
+    height: 460px;
     width: 500px;
-    overflow: overlay;
+    overflow-y: overlay;
+    overflow-x: hidden;
 }
 
 .content::-webkit-scrollbar-thumb {
@@ -15,7 +16,7 @@
 .header {
     display: flex;
     justify-content: center;
-    margin-bottom: 12px;
+    margin-bottom: 24px;
 }
 
 .icon-close {
@@ -24,14 +25,9 @@
     top: 20px;
     border-radius: 100%;
     color: #000;
-    background-color: #16182308;
     display: flex;
     padding: 4px;
-
-    &:hover {
-        cursor: pointer;
-        background-color: #1618231e;
-    }
+    cursor: pointer;
 }
 .icon-back {
     position: absolute;
@@ -80,7 +76,7 @@
 .policy-confirm {
     font-size: 12px;
     line-height: 14px;
-    color: #16182380;
+    color: var(--text-color-dark);
     position: absolute;
     bottom: 64px;
     padding: 16px 44px;

@@ -1,6 +1,6 @@
 import classNames from 'classnames/bind';
 import { useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
 import UserContext from '~/component/Contexts/UserContext/UserContext';
 import { LockIcon, UserIcon } from '~/component/Icons';
@@ -9,7 +9,7 @@ import ModalDetailVideo from '~/component/modals/ModalDetailVideo';
 import { useDebounce } from '~/hook';
 import Header from '~/layouts/components/Header';
 import Sidebar from '~/layouts/components/Sidebar';
-import * as Services from '~/Services/Services';
+import * as Services from '~/Services';
 import styles from './Profile.module.scss';
 import Userinfo from './Userinfo';
 import VideosProfile from './VideosProfile';
@@ -17,8 +17,8 @@ import VideosProfile from './VideosProfile';
 const cx = classNames.bind(styles);
 
 function Profile() {
-    const user = UserContext();
-
+    const { currentUser } = UserContext();
+    const { nickname } = useParams();
     const [isEditBtn, setIsEditBtn] = useState(false);
     const [activeBtn, setActiveBtn] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
@@ -29,10 +29,8 @@ function Profile() {
 
     const [listVideo, setListVideo] = useState([]);
     const [likedVideo, setLikedVideo] = useState([]);
-
     const [index, setIndex] = useState(0);
 
-    const nickName = useLocation().pathname;
     const dataUser = useDebounce(data, 800);
 
     useEffect(() => {
@@ -42,31 +40,33 @@ function Profile() {
         }
     }, [dataUser]);
     useEffect(() => {
-        if (user) {
-            if (nickName === `/@${user.nickname}`) {
+        if (currentUser) {
+            if (nickname === currentUser.nickname) {
                 setIsEditBtn(true);
             } else {
                 setIsEditBtn(false);
             }
         }
-    }, [nickName, user]);
+    }, [nickname, currentUser]);
 
     useEffect(() => {
         setIsLoading(true);
-        Services.getAnUser(nickName).then((data) => {
-            if (data) {
-                setData(data);
-            }
-        });
-    }, [nickName]);
+        const fetchApi = async () => {
+            setIsLoading(true);
+            const result = await Services.getAnUser(nickname);
+            setData(result);
+        };
+        fetchApi();
+    }, [nickname]);
+
     useEffect(() => {
         if (isEditBtn)
-            Services.getVideoLiked({ userId: user.id }).then((data) => {
+            Services.getVideoLiked({ userId: currentUser.id }).then((data) => {
                 if (data) {
                     setLikedVideo(data);
                 }
             });
-    }, [user, isEditBtn, nickName]);
+    }, [currentUser, isEditBtn]);
     const handleGetVideoLiked = () => {
         setListVideo(likedVideo);
     };
@@ -98,12 +98,10 @@ function Profile() {
                 />
                 <Sidebar small />
                 {isLoading ? (
-                    <div className={cx('loading')}>
-                        <Loading />
-                    </div>
+                    <div className={cx('loading')}>{!data ? <h1>User does not exist</h1> : <Loading />}</div>
                 ) : (
                     <div className={cx('content')}>
-                        <Userinfo dataUser={dataUser} isEditBtn={isEditBtn} />
+                        <Userinfo data={dataUser} isEditBtn={isEditBtn} />
                         <div className={cx('wrap-videos')}>
                             <div className={cx('btn-toggle')}>
                                 <span
@@ -119,7 +117,6 @@ function Profile() {
                                     className={cx('btn-liked', !activeBtn && 'active-btn')}
                                     onClick={() => {
                                         handleGetVideoLiked();
-
                                         setActiveBtn(true);
                                     }}
                                 >

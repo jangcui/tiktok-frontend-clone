@@ -1,4 +1,4 @@
-@import '/src/ResponsiveStyle/responsiveStyle';
+@use '/src/ResponsiveStyle' as *;
 
 .wrap-comment {
     display: flex;
@@ -156,7 +156,7 @@
                 align-items: center;
 
                 strong {
-                    color: #161823bf;
+                    color: var(--text-color-grey);
                     font-size: 12px;
                     line-height: 17px;
                     text-align: center;
@@ -200,7 +200,7 @@
             }
         }
         .link {
-            color: #161823bf;
+            color: var(--text-color-grey);
             font-size: 14px;
             line-height: 20px;
             display: flex;
@@ -260,7 +260,7 @@
                 font-size: large;
                 font-weight: 600;
                 margin-bottom: 6px;
-                color: #161823bf;
+                color: var(--text-color-grey);
             }
         }
     }

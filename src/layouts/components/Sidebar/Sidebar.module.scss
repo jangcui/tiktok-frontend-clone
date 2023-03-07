@@ -1,4 +1,4 @@
-@import '/src/ResponsiveStyle/responsiveStyle';
+@use '/src/ResponsiveStyle' as *;
 
 .wrapper {
     max-width: 350px;
@@ -56,7 +56,7 @@
     }
 
     p {
-        color: #16182380;
+        color: var(--text-color-dark);
         font-size: 15px;
         margin-bottom: 16px;
         line-height: 20px;

@@ -4,7 +4,6 @@
     align-items: flex-start;
     margin-bottom: 16px;
     position: relative;
-    overflow: hidden;
     padding: 12px 0;
 }
 .avatar {
@@ -42,9 +41,11 @@
     }
     .creator {
         color: var(--primary);
-        flex: 1;
-        font-size: 14px;
+        flex: 1 1;
+        font-size: 16px;
         margin-left: 12px;
+        display: flex;
+        align-items: center;
     }
 }
 
@@ -59,7 +60,7 @@
     margin-top: 6px;
 }
 .sub-comment {
-    color: #16182380;
+    color: var(--text-color-dark);
     font-size: 12px;
     line-height: 20px;
 
@@ -96,8 +97,8 @@
             padding: 12px 18px;
             min-width: 150px;
             right: 2px;
-            bottom: -55px;
-            box-shadow: #0000003d 0px 3px 8px;
+            bottom: -50px;
+            box-shadow: #0000003d 0px 2px 4px;
             border-radius: 8px;
             background-color: #fff;
             opacity: 0;
@@ -129,7 +130,7 @@
         }
     }
     .btn-like {
-        color: #16182380;
+        color: var(--text-color-dark);
         font-size: 12px;
         line-height: 17px;
         display: flex;

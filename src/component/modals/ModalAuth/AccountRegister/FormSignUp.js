@@ -113,7 +113,7 @@ function FormSignUp() {
                     <div className={cx('loading')}>
                         <Loading />
                     </div>
-                    <div className={cx('overlay')}> </div>
+                    <div className={cx('overlay')} />
                 </>
             )}
             {debounceIsLogin && (
@@ -121,7 +121,7 @@ function FormSignUp() {
                     <div className={cx('loading')}>
                         <h2>Logged in.....</h2>
                     </div>
-                    <div className={cx('overlay')}> </div>
+                    <div className={cx('overlay')} />
                 </>
             )}
             <div className={cx('container')}>

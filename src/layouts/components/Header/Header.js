@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import className from 'classnames/bind';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import {
     faCircleQuestion,
     faCoins,
@@ -58,47 +58,40 @@ const MENU_ITEMS = [
         title: 'keyboard shortcuts',
     },
 ];
-const userMenu = [
-    {
-        icon: <FontAwesomeIcon icon={faUser} />,
-        title: 'View profile',
-        to: '/@profile',
-    },
-    {
-        icon: <FontAwesomeIcon icon={faCoins} />,
-        title: 'Get Coins',
-        to: '/coin',
-    },
-    {
-        icon: <FontAwesomeIcon icon={faGear} />,
-        title: 'Setting',
-        to: '/setting',
-    },
-    ...MENU_ITEMS,
-    {
-        icon: <FontAwesomeIcon icon={faSignOut} />,
-        title: 'Log out',
-        to: '/logout',
-        separate: true,
-    },
-];
 
 function Header({ small }) {
-    const user = UserContext();
+    const { currentUser } = UserContext();
     const { setIsModalAuth } = useModalAuthContext();
-    const [dataUser, setDataUser] = useState({});
 
-    useEffect(() => {
-        !!user ? setDataUser(user) : setDataUser({});
-    }, [user]);
-
+    const userMenu = [
+        {
+            icon: <FontAwesomeIcon icon={faUser} />,
+            title: 'View profile',
+            to: currentUser && `/@${currentUser?.nickname}`,
+        },
+        {
+            icon: <FontAwesomeIcon icon={faCoins} />,
+            title: 'Get Coins',
+            to: '/coin',
+        },
+        {
+            icon: <FontAwesomeIcon icon={faGear} />,
+            title: 'Setting',
+            to: '/setting',
+        },
+        ...MENU_ITEMS,
+        {
+            icon: <FontAwesomeIcon icon={faSignOut} />,
+            title: 'Log out',
+            logout: '/logout',
+            separate: true,
+        },
+    ];
     const handleLogout = () => {
         localStorage.clear();
         window.location.reload();
     };
-
     const handleMenuChange = (menuItem) => {
-        console.log(menuItem);
         switch (menuItem.type) {
             case '/language':
                 // Handle change language
@@ -106,13 +99,10 @@ function Header({ small }) {
                 break;
             default:
         }
-        switch (menuItem.to) {
+        switch (menuItem.logout) {
             case '/logout':
                 handleLogout();
                 console.log(123);
-                break;
-            case '/@profile':
-                window.location.pathname = `@${user.nickname}`;
                 break;
 
             default:
@@ -130,13 +120,17 @@ function Header({ small }) {
                 <Search />
                 <div className={cx('actions')}>
                     <>
-                        <Link to={!!user && config.routes.upload}>
-                            <Button normal className={cx('plus-upload')} onClick={() => !user && setIsModalAuth(true)}>
+                        <Button
+                            normal
+                            className={cx('plus-upload')}
+                            onClick={() => !currentUser && setIsModalAuth(true)}
+                        >
+                            <Link to={currentUser ? config.routes.upload : ''}>
                                 <FontAwesomeIcon icon={faPlus} />
-                                <b> Up Load</b>
-                            </Button>
-                        </Link>
-                        {!!user ? (
+                            </Link>
+                            <b> Up Load</b>
+                        </Button>
+                        {currentUser ? (
                             <>
                                 <Tippy content="Message" placement="bottom" delay={[0, 200]}>
                                     <button className={cx('btn-actions')}>
@@ -160,14 +154,14 @@ function Header({ small }) {
                     </>
 
                     <Menu
-                        items={!!user ? userMenu : MENU_ITEMS}
+                        items={currentUser ? userMenu : MENU_ITEMS}
                         onChange={handleMenuChange}
                         delay={[0, 700]}
                         offset={[12, 8]}
                         placement="bottom-end"
                     >
-                        {!!user ? (
-                            <Image className={cx('user-avatar')} src={dataUser.avatar} alt="avatar" />
+                        {currentUser ? (
+                            <Image className={cx('user-avatar')} src={currentUser.avatar} alt="avatar" />
                         ) : (
                             <button className={cx('more-btn')}>
                                 <FontAwesomeIcon icon={faEllipsisVertical} />

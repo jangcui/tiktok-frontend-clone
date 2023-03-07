@@ -32,7 +32,7 @@ export const getUserVideo = async (id) => {
     }
 };
 
-export const postVideo = async (formData) => {
+export const postVideo = async ({ formData }) => {
     try {
         const res = await httpRequest.post('videos', formData);
         return res.data;
@@ -40,14 +40,7 @@ export const postVideo = async (formData) => {
         console.log(error);
     }
 };
-export const createVideo = async (formData) => {
-    try {
-        const res = await httpRequest.post('videos', formData);
-        return res.data;
-    } catch (error) {
-        console.log(error);
-    }
-};
+
 export const deleteVideo = async ({ id }) => {
     try {
         const res = await httpRequest.Delete(`videos/${id}`);
@@ -121,7 +114,7 @@ export const login = async ({ email, password }) => {
 
 export const getAnUser = async (pathName) => {
     try {
-        const res = await httpRequest.get(`users${pathName}`);
+        const res = await httpRequest.get(`users/@${pathName}`);
         return res.data;
     } catch (error) {
         console.log(error);
@@ -140,6 +133,15 @@ export const followUser = async (id) => {
 export const unFollowUser = async (id) => {
     try {
         const res = await httpRequest.post(`users/${id}/unfollow`);
+        return res.data;
+    } catch (error) {
+        console.log(error);
+    }
+};
+
+export const updateCurrentUser = async ({ formData }) => {
+    try {
+        const res = await httpRequest.post(`auth/me?_method=PATCH`, formData);
         return res.data;
     } catch (error) {
         console.log(error);

@@ -10,7 +10,7 @@ import ConFirmContext from '../Contexts/ConFirmContext';
 const cx = classNames.bind(styles);
 
 function BtnToggleFollow({ dataUser, className }) {
-    const user = UserContext();
+    const { currentUser } = UserContext();
     const { setIsModalAuth } = useModalAuthContext();
     const { handleConfirm } = ConFirmContext();
 
@@ -20,8 +20,8 @@ function BtnToggleFollow({ dataUser, className }) {
         [className]: className,
     });
     const handleFollow = () => {
-        !user && setIsModalAuth(true);
-        if (dataUser && !!user) {
+        !currentUser && setIsModalAuth(true);
+        if (dataUser && !!currentUser) {
             Services.followUser(dataUser.id)
                 .then((data) => {
                     if (data) {
@@ -55,7 +55,7 @@ function BtnToggleFollow({ dataUser, className }) {
                             handleConfirm({
                                 title: 'Un follow user ?',
                                 status: 'Agree',
-                                onDelete: handleUnFollow,
+                                onConfirm: handleUnFollow,
                             })
                         }
                     >

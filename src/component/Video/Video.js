@@ -80,10 +80,8 @@ function Video(
             <div className={cx('container')}>
                 <div className={cx('wrap-video')}>
                     {isLoading && (
-                        <div className={cx('wrap-loading')}>
-                            <div className={cx('loading')}>
-                                <Loading />
-                            </div>
+                        <div className={cx('loading')}>
+                            <Loading />
                         </div>
                     )}
                     {control && <div className={cx('view-video')} ref={ViewRef} />}

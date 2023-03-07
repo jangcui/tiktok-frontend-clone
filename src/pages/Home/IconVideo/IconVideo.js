@@ -105,7 +105,7 @@ const MENU_ITEMS = [
 ];
 
 function IconVideo({ data, onOpenVideo }) {
-    const user = UserContext();
+    const { currentUser } = UserContext();
     const { setIsModalAuth } = useModalAuthContext();
 
     const handleOpenModal = () => {
@@ -115,10 +115,10 @@ function IconVideo({ data, onOpenVideo }) {
     return (
         <>
             <div className={cx('wrapper')}>
-                <IconLikeVideo data={data} isLogin={!user ? false : true} openModal={handleOpenModal}>
+                <IconLikeVideo data={data} isLogin={!currentUser ? false : true} openModal={handleOpenModal}>
                     <LikeIconFull width={'24px'} height={'24px'} />
                 </IconLikeVideo>
-                <div className={cx('btn-icons')} onClick={!user ? handleOpenModal : onOpenVideo}>
+                <div className={cx('btn-icons')} onClick={!currentUser ? handleOpenModal : onOpenVideo}>
                     <span className={cx('icons')}>
                         <CommentIcon width={'24px'} height={'24px'} />
                     </span>

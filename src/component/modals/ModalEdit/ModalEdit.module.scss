@@ -71,13 +71,14 @@
                     left: 68px;
                     padding: 4px;
                     background-color: #ffff;
-                    color: #161823bf;
+                    color: var(--text-color-grey);
                     border: 0.1px solid #16182358;
                     border-radius: 50%;
                 }
             }
 
             .filed-input {
+                position: relative;
                 display: flex;
                 flex-direction: column;
                 width: 360px;
@@ -95,19 +96,55 @@
 
                     &:focus {
                         background: #1618230f;
-                        outline: #16182333 solid 1.4px;
+                        outline: #16182333 solid 1px;
+                    }
+                }
+                .error {
+                    border: 1.4px solid #fe2c55;
+                }
+                .err-message {
+                    margin-top: 4px;
+                    color: #fe2c55;
+                    font-size: 12px;
+                }
+                .error-bio {
+                    color: #fe2c55;
+                }
+                .checking {
+                    position: absolute;
+                    right: 10px;
+                    top: 10px;
+
+                    .tick-icon {
+                        color: #0be09b;
+                    }
+
+                    .loader {
+                        width: 16px;
+                        height: 16px;
+                        border: 4px dotted var(--text-color-grey);
+                        border-radius: 50%;
+                        animation: 0.8s loader linear infinite;
+                    }
+
+                    @keyframes loader {
+                        0% {
+                            transform: rotate(0deg);
+                        }
+                        100% {
+                            transform: rotate(360deg);
+                        }
                     }
                 }
                 p {
                     font-size: 14px;
-                    color: #161823bf;
+                    color: var(--text-color-grey);
                     line-height: 16px;
                     overflow: hidden;
                     margin-top: 8px;
                 }
                 .textarea {
                     height: 100px;
-                    padding: 12px;
                     resize: none;
                 }
             }

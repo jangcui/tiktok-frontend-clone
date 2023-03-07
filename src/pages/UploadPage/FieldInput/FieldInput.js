@@ -35,7 +35,9 @@ function FieldInput({ title, value, onChange, placeholder }) {
                         }}
                     />
                 </div>
-                {isFieldEmpty && <span className={cx('error')}>This field is required, cannot be left blank.</span>}
+                {isFieldEmpty ? (
+                    <span className={cx('error')}>This field is required, cannot be left blank.</span>
+                ) : null}
             </div>
         </>
     );

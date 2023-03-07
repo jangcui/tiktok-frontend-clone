@@ -1,8 +1,8 @@
-@import '/src/ResponsiveStyle/responsiveStyle';
+@use '/src/ResponsiveStyle' as *;
 
 .container {
     margin-top: 24px;
-    color: #16182380;
+    color: var(--text-color-dark);
     display: flex;
     text-align: center;
     width: 260px;

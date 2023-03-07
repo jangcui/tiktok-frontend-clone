@@ -14,7 +14,7 @@ import SuggestedPage from './SuggestedPage';
 const cx = classNames.bind(styles);
 
 function Following() {
-    const user = UserContext();
+    const { currentUser } = UserContext();
 
     const [data, setData] = useState([]);
     const [page, setPage] = useState(1);
@@ -22,7 +22,7 @@ function Following() {
         setPage(page + 1);
     };
     useEffect(() => {
-        if (user) {
+        if (currentUser) {
             Services.getVideoList({ type: 'following', page: page })
                 .then((data) => {
                     if (data) {
@@ -32,11 +32,11 @@ function Following() {
                 })
                 .catch((error) => console.log(error));
         }
-    }, [page, user]);
+    }, [page, currentUser]);
 
     return (
         <div className={cx('wrapper')}>
-            {!user || data.length === 0 ? (
+            {!currentUser || data.length === 0 ? (
                 <SuggestedPage />
             ) : (
                 <InfiniteScroll
