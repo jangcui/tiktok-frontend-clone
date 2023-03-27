@@ -66,7 +66,7 @@ function Sidebar({ small = false }) {
                     icon={<UserGroupIcon />}
                     activeIcon={<UserGroupActiveIcon />}
                 />
-                <MenuItems title="LIVE" to={config.routes.live} icon={<LiveIcon />} activeIcon={<LiveActiveIcon />} />
+                {/* <MenuItems title="LIVE" to={config.routes.live} icon={<LiveIcon />} activeIcon={<LiveActiveIcon />} /> */}
                 {!!!currentUser && (
                     <div className={cx('btn-login')}>
                         <p className={cx('btn-title')}>Log in to follow creators, like videos, and view comments.</p>

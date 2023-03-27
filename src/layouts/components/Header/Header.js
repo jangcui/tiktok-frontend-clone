@@ -127,8 +127,8 @@ function Header({ small }) {
                         >
                             <Link to={currentUser ? config.routes.upload : ''}>
                                 <FontAwesomeIcon icon={faPlus} />
+                                <b> Up Load</b>
                             </Link>
-                            <b> Up Load</b>
                         </Button>
                         {currentUser ? (
                             <>
@@ -139,7 +139,7 @@ function Header({ small }) {
                                 </Tippy>
                                 <Tippy content="Box" placement="bottom" delay={[0, 200]}>
                                     <button className={cx('btn-actions')}>
-                                        <span className={cx('notify')}>12</span>
+                                        {/* <span className={cx('notify')}></span> */}
                                         <MessageIcon />
                                     </button>
                                 </Tippy>

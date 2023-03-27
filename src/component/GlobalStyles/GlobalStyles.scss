@@ -8,12 +8,15 @@
     --white: #fff;
     --text-color-grey: #161823bf;
     --text-color-dark: #16182380;
-
     --font-family: 'ProximaNova', Arial, Tahoma, PingFangSC, sans-serif;
     // DefaultLayout
     --default-layout-header-height: 60px;
     --default-layout-width: 1150px;
     --default-layout-horizontal-spacer: 24px;
+    /////
+    --width-sidebar-smallL: 100px;
+    --width-sidebar-normal: 250px;
+    --width-content-layout: 692px;
 }
 
 * {

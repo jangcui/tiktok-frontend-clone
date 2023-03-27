@@ -22,8 +22,8 @@
 @mixin styleLayout {
     display: flex;
     flex-direction: column;
-    max-width: calc(100% - 100px);
-    width: 692px;
+    max-width: calc(100% - var(--width-sidebar-smallL));
+    width: var(--width-content-layout);
     margin-right: 16px;
     margin-left: 16px;
     padding: 24px 0;

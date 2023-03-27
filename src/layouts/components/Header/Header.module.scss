@@ -85,5 +85,9 @@
 
     b {
         margin-left: 4px;
+
+        @include breakpoint(phone) {
+            display: none;
+        }
     }
 }

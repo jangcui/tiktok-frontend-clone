@@ -18,7 +18,7 @@
     }
 }
 .content {
-    width: calc(100% - 250px);
+    width: calc(100% - var(--width-sidebar-normal));
     margin-top: 60px;
     margin-left: 20px;
     display: flex;

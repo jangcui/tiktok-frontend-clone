@@ -3,7 +3,7 @@ const routes = {
     following: '/following',
     upload: '/upload',
     profile: '/@:nickname',
-    live: '/live/*',
+    // live: '/live/*',
     search: '/search/*',
     video: '/video/*',
     notfound: '*',

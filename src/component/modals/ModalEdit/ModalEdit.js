@@ -186,7 +186,6 @@ function ModalEdit({ isOpen, setIsOpen }) {
             setIsConfirm(false);
         }
     };
-    console.log(convertImage);
     return (
         <>
             <ModalWrapper isOpen={isOpen}>

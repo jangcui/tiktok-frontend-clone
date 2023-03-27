@@ -2,7 +2,7 @@ import { useState } from 'react';
 import className from 'classnames/bind';
 
 import Button from '~/component/Button';
-import { DownIcon, WarningIcon } from '~/component/Icons';
+import { DownIcon } from '~/component/Icons';
 import * as Services from '~/Services/Services';
 import styles from './UploadPage.module.scss';
 import FooterUploadPage from './FooterUploadPage';

@@ -46,7 +46,7 @@ const MENU_SIGN_UP = [
         type: 'google',
         icon: <GoogleIcon />,
         title: 'Continue with Google',
-        possible: true,
+        possible: false,
     },
     {
         type: 'twitter',
@@ -90,7 +90,7 @@ const MENU_SIGN_IN = [
     {
         icon: <GoogleIcon />,
         title: 'Continue with Google',
-        possible: true,
+        possible: false,
     },
     {
         icon: <FacebookIcon />,
@@ -106,7 +106,7 @@ const MENU_SIGN_IN = [
             {
                 icon: <GoogleIcon />,
                 title: 'Continue with Google',
-                possible: true,
+                possible: false,
             },
             {
                 icon: <FacebookIcon />,
