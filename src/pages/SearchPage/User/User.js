@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
 import { useEffect, useState } from 'react';
 import { Link, Outlet } from 'react-router-dom';
@@ -26,17 +27,13 @@ function User({ valueSearch }) {
 
     const handleNextRender = () => {
         setPage(page + 1);
-        console.log(page);
         Services.search({ page: page, type: 'more', q: valueSearch }).then((data) => {
             if (data.length === 0) {
                 setIsLoadMore(false);
             }
-            console.log(page);
-
             setData((prev) => [...prev, ...data]);
         });
     };
-    console.log(data);
     return (
         <>
             {isLoading ? (
@@ -88,5 +85,7 @@ function User({ valueSearch }) {
         </>
     );
 }
-
+User.propTypes = {
+    valueSearch: PropTypes.string,
+};
 export default User;

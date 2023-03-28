@@ -105,7 +105,6 @@ function FormSignUp() {
         });
     };
 
-    console.log(confirmPwd);
     return (
         <div>
             {isLoading && (

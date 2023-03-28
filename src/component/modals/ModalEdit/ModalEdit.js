@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
 import { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -55,11 +56,11 @@ function ModalEdit({ isOpen, setIsOpen }) {
         };
     }, [convertImage]);
 
-    const handlePreviewFile = (e) => {
-        const file = e.target.files[0];
+    const handlePreviewFile = async (e) => {
+        const file = await e.target.files[0];
         if (file) {
+            const img = await URL.createObjectURL(file);
             setFiImage(file);
-            const img = URL.createObjectURL(file);
             setConvertImage(img);
         }
     };
@@ -146,7 +147,7 @@ function ModalEdit({ isOpen, setIsOpen }) {
                 valueBioUser === currentUser.bio
             ) {
                 setIsConfirm(false);
-            } else if (errorNickName.isErr || errBioUser) {
+            } else if (errorNickName.isErr && errBioUser) {
                 setIsConfirm(false);
             } else {
                 setIsConfirm(true);
@@ -180,7 +181,6 @@ function ModalEdit({ isOpen, setIsOpen }) {
             setIsOpen(false);
             setCurrentUser(result);
             navigate(`/@${result.nickname}`);
-            console.log(result);
         } else {
             setAlert('Some thing wrong, please try again...', 2000);
             setIsConfirm(false);
@@ -298,5 +298,9 @@ function ModalEdit({ isOpen, setIsOpen }) {
         </>
     );
 }
+ModalEdit.propTypes = {
+    isOpen: PropTypes.bool.isRequired,
+    setIsOpen: PropTypes.func.isRequired,
+};
 
 export default ModalEdit;

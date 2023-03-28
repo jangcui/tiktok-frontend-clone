@@ -27,7 +27,6 @@ function Following() {
                 .then((data) => {
                     if (data) {
                         setData((preUser) => [...preUser, ...data]);
-                        console.log(data);
                     }
                 })
                 .catch((error) => console.log(error));

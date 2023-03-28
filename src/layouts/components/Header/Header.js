@@ -1,6 +1,3 @@
-import { useEffect, useState } from 'react';
-import className from 'classnames/bind';
-import { Link, useLocation } from 'react-router-dom';
 import {
     faCircleQuestion,
     faCoins,
@@ -15,16 +12,19 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Tippy from '@tippyjs/react';
+import className from 'classnames/bind';
+import { Link } from 'react-router-dom';
+
 import images from '~/asset/images';
 import Button from '~/component/Button';
-import { MessageIcon, UploadIcon } from '~/component/Icons';
-import Image from '~/component/Image';
-import Search from '../Search';
-import Menu from '~/component/Popper/Menu';
-import config from '~/config';
-import styles from './Header.module.scss';
 import UserContext from '~/component/Contexts/UserContext/UserContext';
 import useModalAuthContext from '~/component/Contexts/useModalAuthContext';
+import { MessageIcon, UploadIcon } from '~/component/Icons';
+import Image from '~/component/Image';
+import Menu from '~/component/Popper/Menu';
+import config from '~/config';
+import Search from '../Search';
+import styles from './Header.module.scss';
 
 const cx = className.bind(styles);
 
@@ -95,14 +95,12 @@ function Header({ small }) {
         switch (menuItem.type) {
             case '/language':
                 // Handle change language
-                console.log(123);
                 break;
             default:
         }
         switch (menuItem.logout) {
             case '/logout':
                 handleLogout();
-                console.log(123);
                 break;
 
             default:

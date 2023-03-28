@@ -174,7 +174,7 @@ function ModalAuth() {
                             {items &&
                                 items.map((item, index) => (
                                     <div key={index} className={cx('wrap-action')} onClick={() => handleItems(item)}>
-                                        <Button normal disable={!item.possible} onClick={() => console.log(item)}>
+                                        <Button normal disable={!item.possible}>
                                             <span className={cx('icon')}>{item.icon}</span>
                                             <p>{item.title}</p>
                                         </Button>

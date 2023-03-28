@@ -36,9 +36,6 @@ function VideoPage() {
         Services.getAVideo(path).then((data) => {
             if (data) {
                 setDataCmt(data);
-                console.log(data);
-            } else {
-                console.log(123);
             }
         });
     }, [pathName]);
