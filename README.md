@@ -7,7 +7,7 @@
 
 ## Feature:
 
--   RResponsive.
+-   Responsive.
 -   Interact with current user:
     Login, register, 
     Edit profile, 
