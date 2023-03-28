@@ -2,8 +2,8 @@
 
 ## Personal Project:
 
-Link web: [https://tiktok-cloneee.vercel.app](https://tiktok-cloneee.vercel.app/)
-API: [https://tiktok.fullstack.edu.vn](https://tiktok.fullstack.edu.vn)
+- Link web: [https://tiktok-cloneee.vercel.app](https://tiktok-cloneee.vercel.app/)
+- API: [https://tiktok.fullstack.edu.vn](https://tiktok.fullstack.edu.vn)
 
 ## Feature:
 
