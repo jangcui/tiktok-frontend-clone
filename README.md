@@ -12,7 +12,7 @@
     Login, register, 
     Edit profile, 
     CRUD video, CRUD comment, 
--   Interact with other users
+-   Interact with other users:
     View profile users, 
     Following users, 
     Search users, 
