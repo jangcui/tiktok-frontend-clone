@@ -11,6 +11,7 @@ import Sidebar from '~/layouts/components/Sidebar';
 import { PlayIcon, VideoIcon } from '~/component/Icons';
 import VolumeVideo from '~/component/Video/VolumeVideo';
 import CommentDetail from '~/component/modals/ModalDetailVideo/CommentDetail';
+import ChangeTitle from '~/component/ChangeTitle/ChangeTitle';
 const cx = classNames.bind(styles);
 function VideoPage() {
     const location = useLocation();
@@ -41,6 +42,7 @@ function VideoPage() {
     }, [pathName]);
     return (
         <div className={cx('wrapper')}>
+            <ChangeTitle title={'Video Detail'} />
             <Header small />
             <Sidebar small />
             <div className={cx('container')}>

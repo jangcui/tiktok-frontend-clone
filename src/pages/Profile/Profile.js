@@ -2,7 +2,7 @@ import classNames from 'classnames/bind';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
-import UserContext from '~/component/Contexts/UserContext/UserContext';
+import UserContext from '~/component/Contexts/UserContext';
 import { LockIcon, UserIcon } from '~/component/Icons';
 import Loading from '~/component/Loading';
 import ModalDetailVideo from '~/component/modals/ModalDetailVideo';
@@ -13,6 +13,7 @@ import * as Services from '~/Services';
 import styles from './Profile.module.scss';
 import Userinfo from './Userinfo';
 import VideosProfile from './VideosProfile';
+import ChangeTitle from '~/component/ChangeTitle';
 
 const cx = classNames.bind(styles);
 
@@ -81,9 +82,13 @@ function Profile() {
         setIsOpen(true);
         setIndex(index);
     };
-
+    console.log(dataUser);
     return (
         <div className={cx('wrapper')}>
+            <ChangeTitle
+                title={dataUser ? `${dataUser.first_name} ${dataUser.last_name} (@${nickname}) Official` : ''}
+            />
+
             <div className={cx('header')}>
                 <Header small />
             </div>

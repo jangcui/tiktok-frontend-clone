@@ -10,6 +10,7 @@ import ContainerVideoList from '~/component/ContainerVideoList';
 import UserContext from '~/component/Contexts/UserContext/UserContext';
 import Loading from '~/component/Loading';
 import SuggestedPage from './SuggestedPage';
+import ChangeTitle from '~/component/ChangeTitle';
 
 const cx = classNames.bind(styles);
 
@@ -35,6 +36,7 @@ function Following() {
 
     return (
         <div className={cx('wrapper')}>
+            <ChangeTitle title={'Following'} />
             {!currentUser || data.length === 0 ? (
                 <SuggestedPage />
             ) : (

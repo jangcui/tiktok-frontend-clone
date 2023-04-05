@@ -62,6 +62,7 @@ function Search() {
             setSearchValue(searchValue);
         }
     };
+    console.log(searchResult);
     return (
         <>
             <HeadlessTippy

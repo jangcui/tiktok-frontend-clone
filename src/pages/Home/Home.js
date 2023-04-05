@@ -5,6 +5,7 @@ import styles from './Home.module.scss';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import ContainerVideoList from '~/component/ContainerVideoList';
 import Loading from '~/component/Loading';
+import ChangeTitle from '~/component/ChangeTitle/ChangeTitle';
 
 const cx = classNames.bind(styles);
 
@@ -29,6 +30,7 @@ function Home() {
     }, [page]);
     return (
         <div className={cx('wrapper')}>
+            <ChangeTitle title={'Make your day'} />
             <InfiniteScroll
                 dataLength={dataHome.length}
                 next={handleNextRender}

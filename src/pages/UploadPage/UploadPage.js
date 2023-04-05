@@ -9,6 +9,7 @@ import FooterUploadPage from './FooterUploadPage';
 import Uploader from './Uploader';
 import FieldInput from './FieldInput/FieldInput';
 import NotifyContext from '~/component/Contexts/NotifyContext';
+import ChangeTitle from '~/component/ChangeTitle/ChangeTitle';
 
 const cx = className.bind(styles);
 
@@ -94,6 +95,7 @@ function UploadPage() {
     return (
         <>
             <div className={cx('wrapper')}>
+                <ChangeTitle title={'Upload'} />
                 <div className={cx('layout')}>
                     <div className={cx('container', 'animation')}>
                         {isLoading && (

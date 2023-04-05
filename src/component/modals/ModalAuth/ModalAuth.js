@@ -20,6 +20,7 @@ import useModalAuthContext from '~/component/Contexts/useModalAuthContext';
 import ModalWrapper from '../ModalWrapper';
 import FormSignUp from './AccountRegister/FormSignUp';
 import { FormLogin } from './AccountRegister';
+import ChangeTitle from '~/component/ChangeTitle/ChangeTitle';
 
 const cx = classNames.bind(styles);
 
@@ -154,6 +155,7 @@ function ModalAuth() {
 
     return (
         <>
+            {isModalAuth && <ChangeTitle title={'Log in'} />}
             <ModalWrapper isOpen={isModalAuth}>
                 <div className={cx('container')}>
                     <div className={cx('header')}>

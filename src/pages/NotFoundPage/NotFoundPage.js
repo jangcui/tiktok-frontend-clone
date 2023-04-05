@@ -4,11 +4,13 @@ import Button from '~/component/Button';
 import { PlayIcon } from '~/component/Icons';
 import FooterUploadPage from '../UploadPage/FooterUploadPage';
 import styles from './NotFoundPage.module.scss';
+import ChangeTitle from '~/component/ChangeTitle';
 const cx = classNames.bind(styles);
 
 function NotFoundPage() {
     return (
         <div className={cx('wrapper')}>
+            <ChangeTitle title={'Not Found'} />
             <div className={cx('container')}>
                 <span className={cx('code')}>404</span>
                 <h1 className={cx('title')}>Couldn't find this page.</h1>

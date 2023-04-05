@@ -4,6 +4,7 @@ import { NavLink, Outlet, Route, Routes, useLocation } from 'react-router-dom';
 import styles from './SearchPage.module.scss';
 import Videos from './Videos';
 import User from './User';
+import ChangeTitle from '~/component/ChangeTitle/ChangeTitle';
 
 const cx = classNames.bind(styles);
 const items = [
@@ -28,6 +29,7 @@ function SearchPage() {
     const value = search.slice(search.lastIndexOf('=') + 1);
     return (
         <div className={cx('wrapper')}>
+            <ChangeTitle title={`Find '${value}' on TikTok`} />
             <div className={cx('container')}>
                 <div className={cx('tab-btn')}>
                     {items.map((item) => (
