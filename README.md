@@ -2,28 +2,28 @@
 
 ## Personal Project:
 
-Link web: [https://tiktok-cloneee.vercel.app](https://tiktok-cloneee.vercel.app/).\
-API: [https://tiktok.fullstack.edu.vn](https://tiktok.fullstack.edu.vn).\
+- Link web: [https://tiktok-cloneee.vercel.app](https://tiktok-cloneee.vercel.app/)
+- API: [https://tiktok.fullstack.edu.vn](https://tiktok.fullstack.edu.vn)
 
 ## Feature:
 
--   RResponsive.\
+-   Responsive.
 -   Interact with current user:
-    . Login, register.\
-    . Edit profile.\
-    . CRUD video, CRUD comment.\
+    Login, register, 
+    Edit profile, 
+    CRUD video, CRUD comment, 
 -   Interact with other users:
-    . View profile users.\
-    . Following users.\
-    . Search users.\
+    View profile users, 
+    Following users, 
+    Search users, 
 -   Interact with videos:
-    . Like, comment videos.\
-    . Scroll auto play, infinite scroll.\
-    . Adjust the volume for all videos.\
+     Like, comment videos, 
+     Scroll auto play, infinite scroll, 
+     Adjust the volume for all videos,
 
 ## Technology
 
--   React js, Javascript, HTML, Scss module, axios, tippyjs,....\
+-   React js, Javascript, HTML, Scss
 
 ## PreView:
 
